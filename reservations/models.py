@@ -1,16 +1,6 @@
 from django.db import models
 
 # Create your models here.
-class Reservation(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    table_id = models.ForeignKey(Table, on_delete=models.CASCADE)
-    date = models.DateField()
-    time = models.TimeField()
-    customer_full_name = models.CharField(max_length=255)
-
-    def __str__(self):
-        return f"Reservation ID: {self.id} - {self.user_id} ({self.date} - {self.time})"
-        
 class User(models.Model):
     username = models.CharField(max_length=255, unique=True)
     email = models.EmailField(unique=True)
@@ -27,3 +17,13 @@ class Table(models.Model):
 
     def __str__(self):
         return f"Table #{self.table_num} - Seats: {self.amount_of_seats}"
+
+class Reservation(models.Model):
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    table_id = models.ForeignKey(Table, on_delete=models.CASCADE)
+    date = models.DateField()
+    time = models.TimeField()
+    customer_full_name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return f"Reservation ID: {self.id} - {self.user_id} ({self.date} - {self.time})"
