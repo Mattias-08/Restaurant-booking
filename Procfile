@@ -1,1 +1,1 @@
-web: gunicorn restaurant-booking-systems.wsgi
+web: gunicorn booking-systems.wsgi
