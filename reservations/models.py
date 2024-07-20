@@ -1,8 +1,9 @@
 from django.db import models
 
 class Reservation(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    table_id = models.ForeignKey(Table, on_delete=models.CASCADE)
+    customer_full_name = models.CharField(max_length=255)
+    # Comma-separated list of table numbers (if applicable for many tables)
+    tables = models.CharField(max_length=255, blank=True, help_text="Comma-separated list of table numbers")
     date = models.DateField()
     time = models.TimeField()
     customer_full_name = models.CharField(max_length=255)
