@@ -8,14 +8,13 @@ STATUS = ((0, "Draft"), (1, "Published"))
 
 # Avaiable time periods for booking
 TIME_PERIODS = (
-    (0, '17:00-17:45'),
-    (1, '18:00-18:45'),
-    (2, '19:00-19:45'),
-    (3, '20:00-20:45'),
-    (4, '21:00-21:45'),
-    (5, '22:00-22:45'),
+    (0, 17),
+    (1, 18),
+    (2, 19),
+    (3, 20),
+    (4, 21),
+    (5, 22),
 )
-
 # Table number, name, number of seats
 TABLES = (
     (1, 'Table 1', 2), 
@@ -41,7 +40,7 @@ class Reservation(models.Model):
     customer_full_name = models.CharField(max_length=255)
     date = models.DateField()
     time_slot =  models.IntegerField(choices=TIME_PERIODS, default=0)
-    table_number = models.PositiveIntegerField(choices=TABLES),
+    table_number = models.IntegerField(choices=TABLES, default=1),
 
     def clean(self):
         # Validate booking date is in the future and at least a day before
