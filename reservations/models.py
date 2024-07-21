@@ -40,8 +40,8 @@ TABLES = (
 class Reservation(models.Model):
     customer_full_name = models.CharField(max_length=255)
     date = models.DateField()
-    time_slot = models.PositiveIntegerField(choices=TIME_PERIODS)
-    #table_number = models.PositiveIntegerField(choices=TABLE_CHOICES)
+    time_slot =  models.IntegerField(choices=TIME_PERIODS, default=0)
+    table_number = models.PositiveIntegerField(choices=TABLES),
 
     def clean(self):
         # Validate booking date is in the future and at least a day before
