@@ -1,7 +1,8 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.core.exceptions import ValidationError
-from django.db.models import slugify
+from django.utils.text import slugify
+
 
 STATUS = ((0, "Draft"), (1, "Published"))
 
@@ -36,21 +37,11 @@ TABLES = (
 )
 
 
-class Post(models.Model):
-    title = models.CharField(max_length=200, unique=True)
-    slug = models.SlugField(max_length=200, unique=True)
-    author = models.ForeignKey(
-    User, on_delete=models.CASCADE, related_name="blog_posts"
-)
-content = models.TextField()
-created_on = models.DateTimeField(auto_now_add=True)
-status = models.IntegerField(choices=STATUS, default=0)
-
 class Reservation(models.Model):
     customer_full_name = models.CharField(max_length=255)
     date = models.DateField()
     time_slot = models.PositiveIntegerField(choices=TIME_PERIODS)
-    table_number = models.PositiveIntegerField(choices=TABLE_CHOICES)
+    #table_number = models.PositiveIntegerField(choices=TABLE_CHOICES)
 
     def clean(self):
         # Validate booking date is in the future and at least a day before
@@ -76,7 +67,7 @@ class Reservation(models.Model):
             raise ValidationError('Selected table is not available for this time slot.')
 
         # Generate slug using slugify with allow_unicode=True for potential internationalization
-        self.slug = slugify(self.name, allow_unicode=True)  # Assuming you have a 'name' field
+        self.slug = slugify(self.name, allow_unicode=True)
 
         # Call the original save method to persist the reservation after successful validation
         super().save(*args, **kwargs)
