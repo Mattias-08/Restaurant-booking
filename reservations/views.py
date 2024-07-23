@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.generic import ListView
+from .models import Reservation
 
-def index(request):    
-    return HttpResponse("Hello, World!")
+class MyListView(ListView):
+    model = Reservation
+    template_name = "booking_system/templates/index.html"
