@@ -19,6 +19,7 @@ from django.urls import path, include
 from reservations import views
 
 urlpatterns = [
-    path('', views.MyListView.as_view, name='index'),
+    path('', views.MyListView.as_view(), name='index'),
     path('admin/', admin.site.urls),
+    path("accounts/", include("allauth.urls")),
 ]

@@ -5,4 +5,4 @@ from .models import Reservation
 
 class MyListView(ListView):
     model = Reservation
-    template_name = "booking_system/templates/index.html"
+    template_name = "reservations/index.html"
