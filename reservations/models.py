@@ -2,6 +2,9 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.utils.text import slugify
+from django.core.validators import MinValueValidator
+from django.utils import timezone 
+
 
 
 STATUS = ((0, "Draft"), (1, "Published"))
@@ -38,15 +41,19 @@ TABLES = (
 
 class Reservation(models.Model):
     customer_full_name = models.CharField(max_length=255)
-    date = models.DateField()
+      # Define validate_date function here
+    def validate_date(self, value):
+      """
+      Custom validator to prevent same-day bookings.
+      Raises a ValidationError if the user tries to save a reservation for the same day.
+      """
+      if value == timezone.now().date():
+          raise ValidationError('Reservations cannot be made for the same day.')
+
     time_slot =  models.IntegerField(choices=TIME_PERIODS, default=0)
     table_number = models.IntegerField(choices=TABLES, default=1),
+    date = models.DateField(validators=[validate_date, MinValueValidator(limit_value=timezone.now().date())])
 
-    def clean(self):
-        # Validate booking date is in the future and at least a day before
-        today = date.today()
-        if self.date <= today:
-            raise ValidationError('Reservation date must be on a day in advance')
 
     def is_table_available(self):
         """
