@@ -6,7 +6,6 @@ from django.core.validators import MinValueValidator
 from django.utils import timezone 
 
 
-
 STATUS = ((0, "Draft"), (1, "Published"))
 
 # Avaiable time periods for booking
@@ -38,48 +37,56 @@ TABLES = (
     (16, 'Table 16', 8),  
 )
 
-
 class Reservation(models.Model):
-    customer_full_name = models.CharField(max_length=255)
-      # Define validate_date function here
-    def validate_date(self, value):
-      """
-      Custom validator to prevent same-day bookings.
-      Raises a ValidationError if the user tries to save a reservation for the same day.
-      """
-      if value == timezone.now().date():
-          raise ValidationError('Reservations cannot be made for the same day.')
+  customer_full_name = models.CharField(max_length=255)
+  time_slot = models.IntegerField(choices=TIME_PERIODS, default=0)
+  table_number = models.IntegerField(choices=TABLES, default=1),
 
-    time_slot =  models.IntegerField(choices=TIME_PERIODS, default=0)
-    table_number = models.IntegerField(choices=TABLES, default=1),
-    date = models.DateField(validators=[validate_date, MinValueValidator(limit_value=timezone.now().date())])
+  def validate_date(self, value):
+    """
+    Custom validation function to check the reservation date.
 
+    This function ensures the following:
+      - Reservations cannot be made for today or past dates (minimum allowed date is tomorrow).
+      - You can add additional validation logic here, such as checking for specific date ranges based on a `max_booking_date` field (not implemented here).
 
-    def is_table_available(self):
-        """
-        Checks if the selected table is available for the chosen date and time slot.
-        """
+    Args:
+      value: The date value to be validated.
 
-        existing_reservations = Reservation.objects.filter(
-            date=self.date,
-            time_slot=self.time_slot,
-            table_number=self.table_number,
-        )
+    Raises:
+      ValidationError: If the date is today or in the past.
+    """
+    if value <= timezone.now().date():
+      raise ValidationError('Reservations cannot be made for today or past dates.')
+    # Add additional validation logic here (e.g., check for specific date ranges)
 
-        return not existing_reservations.exists()
+  date = models.DateField(validators=[validate_date])
 
-    def save(self, *args, **kwargs):
-        if not self.is_table_available():
-            raise ValidationError('Selected table is not available for this time slot.')
+  def is_table_available(self):
+    """
+    Checks if the selected table is available for the chosen date and time slot.
+    """
 
-        # Generate slug using slugify with allow_unicode=True for potential internationalization
-        self.slug = slugify(self.name, allow_unicode=True)
+    existing_reservations = Reservation.objects.filter(
+      date=self.date,
+      time_slot=self.time_slot,
+      table_number=self.table_number,
+    )
 
-        # Call the original save method to persist the reservation after successful validation
-        super().save(*args, **kwargs)
+    return not existing_reservations.exists()
 
-    def __str__(self):
-        selected_time = TIME_PERIODS[self.time_slot][1]
-        table_info = [t for t in TABLE_CHOICES if t[0] == self.table_number][0]
-        table_name = table_info[1] if table_info[1] else f"Table {self.table_number}"  # Use table name if provided
-        return f"Reservation ID: {self.id} - {self.customer_full_name} ({self.date} - {selected_time}, Table: {table_name})"
+  def save(self, *args, **kwargs):
+    if not self.is_table_available():
+      raise ValidationError('Selected table is not available for this time slot.')
+
+    # Generate slug using slugify with allow_unicode=True for potential internationalization
+    self.slug = slugify(self.name, allow_unicode=True)
+
+    # Call the original save method to persist the reservation after successful validation
+    super().save(*args, **kwargs)
+
+  def __str__(self):
+    selected_time = TIME_PERIODS[self.time_slot][1]
+    table_info = [t for t in TABLE_CHOICES if t[0] == self.table_number][0]
+    table_name = table_info[1] if table_info[1] else f"Table {self.table_number}"  # Use table name if provided
+    return f"Reservation ID: {self.id} - {self.customer_full_name} ({self.date} - {selected_time}, Table: {table_name})"
