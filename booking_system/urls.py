@@ -22,4 +22,5 @@ urlpatterns = [
     path('', views.MyListView.as_view(), name='index'),
     path('admin/', admin.site.urls),
     path("accounts/", include("allauth.urls")),
+    path('reservations/', views.Reservation, name='reservations'),
 ]
