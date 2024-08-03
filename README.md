@@ -72,6 +72,25 @@ The flowchart represents the logic of the application:
 
 ## Deployment
 
+- The program was deployed to [Heroku](https://dashboard.heroku.com).
+- The program can be reached by the [link](https://restaurant-booking-systems-c7e901b3d3c6.herokuapp.com/)
+
+Create a local copy of the GitHub repository by following one of the two processes below:
+
+- Download ZIP file:
+  1. Go to the [GitHub Repo page](https://github.com/Mattias-08/Restaurant-booking).
+  1. Click the Code button and download the ZIP file containing the project.
+  1. Extract the ZIP file to a location on your PC.
+
+- Clone the repository:
+  1. Open a folder on your computer with the terminal.
+  1. Run the following command
+  - `git clone https://8000-mattias08-restaurantboo-z0msi01h5oq.ws.codeinstitute-ide.net/`
+
+- Alternatively, Gitpod can be used by click below to create your own workspace using this repository.
+
+  [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://github.com/Mattias-08/three-in-a-row)
+
 ### Using Github & Gitpod
 
 To deploy your Django application, you'll be using the [Code Institute Python Essentials Template](https://github.com/Code-Institute-Org/ci-full-template).
@@ -146,23 +165,17 @@ View Deployed Application:
 Once deployment finishes, click the `View` button to access your application running on Heroku.
 
 
-### Languages:
+### Technologies Used
 
-- [Python 3.8.5](https://www.python.org/downloads/release/python-385/): used to anchor the project and direct all application behavior
+#### Languages
+
+- [Python](https://www.python.org/downloads/release/python-385/): used to anchor the project and direct all application behavior
 
 - [JavaScript](https://www.javascript.com/): used to provide the start script needed to run the Code Institute mock terminal in the browser
 
 - [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) used to construct the elements involved in building the mock terminal in the browser
 
-### Frameworks/Libraries, Programmes and Tools:
-#### Python modules/packages:
-
-##### Standard library imports:
-
-- [random](https://docs.python.org/3/library/random.html) was used to implement pseudo-random number generation.
-
-
-##### Third-party imports:
+- [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) used to construct styling and colour.
 
 #### Other tools:
 
@@ -202,36 +215,6 @@ The testing has also been done on a tablet and phone to ensure that the website 
 [online validation tool](http://pep8online.com/) was used to ensure didnt have any issues related to the styling or syntax.
 
 The testing was done manually by coping in the code ![Python Validator](documentation/python%20linter.png)
-
----
-## Deployment
-- The program was deployed to [Heroku](https://dashboard.heroku.com).
-- The program can be reached by the [link](https://three-in-a-row-21c4d9510ed4.herokuapp.com/)
-
-### To deploy the project as an application that can be **run locally**:
-
-*Note:*
-  1. Python is required to be installed on your local PC on order to run this program:
-  - `sudo apt install python3`
-
-  1. Pip installed is also requirede to allow the installation of modules the application uses.
-  - `sudo apt install python3-pip`
-
-Create a local copy of the GitHub repository by following one of the two processes below:
-
-- Download ZIP file:
-  1. Go to the [GitHub Repo page](https://github.com/Mattias-08/three-in-a-row).
-  1. Click the Code button and download the ZIP file containing the project.
-  1. Extract the ZIP file to a location on your PC.
-
-- Clone the repository:
-  1. Open a folder on your computer with the terminal.
-  1. Run the following command
-  - `git clone https://github.com/Mattias-08/three-in-a-row`
-
-- Alternatively, Gitpod can be used by click below to create your own workspace using this repository.
-
-  [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://github.com/Mattias-08/three-in-a-row)
 
    
 ---
