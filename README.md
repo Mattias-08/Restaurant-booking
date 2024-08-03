@@ -70,7 +70,81 @@ The flowchart represents the logic of the application:
 
 ---
 
-## Technologies Used
+## Deployment
+
+### Using Github & Gitpod
+
+To deploy your Django application, you'll be using the [Code Institute Python Essentials Template](https://github.com/Code-Institute-Org/ci-full-template).
+
+Getting Started
+Create a New Repository:
+
+On GitHub, use the `Use This Template` button on the Code Institute Python Essentials Template.
+Give your new repository a name and description.
+Set Up Development Environment:
+
+Create a Gitpod workspace from your new repository with `Create Repository from Template`.
+Pin your workspace to prevent accidental deletion.
+Development Workflow
+Frequent Commits: Commit your code changes regularly with clear and descriptive messages.
+Use `git add .` to stage changes.
+Use `git commit -m "Your commit message"`to commit changes.
+Use `git push` to push changes to GitHub.
+Note: Always work from your Gitpod workspace to preserve your development environment.
+
+Remember: The master branch is typically used for production deployments. It's recommended to use feature branches for development and merge them into the master branch when ready for deployment.
+
+### Creating an Application with Heroku
+This guide outlines the steps to deploy your Django application to Heroku using the Code Institute tutorial and reference to the Django Blog cheatsheet.
+
+Prerequisites:
+
+A GitHub account (https://github.com/)
+A Heroku account (https://dashboard.heroku.com/)
+Code for your Django application
+Steps:
+
+Create Requirements File:
+
+In your Gitpod CLI, run the following command to generate a requirements.txt file listing your project dependencies:
+pip3 freeze --local > requirements.txt
+Add requirements.txt to your .gitignore file to prevent accidental commits.
+Create Procfile:
+
+Create a new file named Procfile in your project root directory.
+This file specifies the command to run when your application starts on Heroku.
+For a typical Django application, add the following line to your Procfile:
+web: gunicorn your_project_name.wsgi:application
+Replace your_project_name with the actual name of your Django project.
+Set Up Heroku Environment:
+
+Log in to your Heroku account (https://dashboard.heroku.com/).
+Click "New" and select "Create New App."
+Choose a unique name for your app.
+Select your desired region.
+Configure Environment Variables:
+
+In the Heroku app settings, navigate to the `Settings` tab and click `Reveal Config Vars.`
+Set the following environment variables:
+SECRET_KEY: Replace with a strong, randomly generated secret key.
+CLOUDINARY_URL (optional): If using Cloudinary for media storage, set your Cloudinary API environment variable here.
+Install Heroku Postgres (Optional):
+
+In the "Resources" tab, add the `Heroku Postgres` add-on if your application requires a database.
+Connect Heroku to GitHub:
+
+In the `Deploy` tab, click `Deploy` and choose `GitHub - Connect to Github.`
+Enter your GitHub repository name and click `Search.`
+Select the correct repository and click `Connect.`
+Deploy Your Application:
+
+Choose your deployment method:
+Automatic deployment: Heroku will deploy changes automatically whenever you push them to GitHub.
+Manual deployment: You'll need to click `Deploy Branch` to deploy after making changes.
+View Deployed Application:
+
+Once deployment finishes, click the `View` button to access your application running on Heroku.
+
 
 ### Languages:
 
@@ -92,8 +166,10 @@ The flowchart represents the logic of the application:
 
 #### Other tools:
 
-- [Git](https://git-scm.com/) was used for the version control of the website.
+- [Django](https://www.djangoproject.com/) was used for the frameworks to build the project.
 - [GitHub](https://github.com/) was used to host the code of the website.
+- [GitPod](https://gitpod.io//) was used as the development enviroment.
+- [Heroku](https://heroku.com/) was used to deploy the app.
 - [GIMP](https://www.gimp.org/) was used to make and resize images for the README file.
 
 
@@ -158,11 +234,6 @@ Create a local copy of the GitHub repository by following one of the two process
   [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://github.com/Mattias-08/three-in-a-row)
 
    
----
-## Credits
-
-- Color formatting: [Colorama](https://pypi.org/project/colorama/).
-
 ---
 ## Acknowledgements
 
