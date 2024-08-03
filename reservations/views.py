@@ -1,32 +1,25 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
 from .models import Reservation
-from .forms import ReservationForm 
+from .forms import ReservationForm
+from django.contrib import messages 
 
 
-def home(request):
-    if request.user.is_authenticated:
-        if request.method == 'POST':
-            form = ReservationForm(request.POST)
-            if form.is_valid():
-                reservation = form.save(commit=False)
-                reservation.user = request.user 
-  # Assuming a User field in Reservation model
-                if reservation.is_table_available():
-                    reservation.save()
-                    messages.success(request, 'Reservation created successfully!')
-                else:
-                    messages.error(request, 'Table not available.')
+def make_reservation(request):
+    if request.method == 'POST':
+        form = ReservationForm(request.POST)
+        if form.is_valid():
+            reservation = form.save(commit=False) 
+  # Don't save immediately for validation
+            if reservation.is_table_available():  # Check for table availability
+                reservation.save()
+                messages.success(request, 'Your reservation has been submitted successfully! We will confirm your reservation shortly.')
+                return redirect('home')  # Redirect to home page after success
             else:
-                messages.error(request, 'Invalid form data.')
-        else:
-            form = ReservationForm()
-
-        user_reservations = Reservation.objects.filter(user=request.user)
-        context = {'form': form, 'user_reservations': user_reservations}
-        return render(request, 'home.html', context)
+                form.add_error(None, 'Selected table is not available for this time slot.')
     else:
-        return render(request, 'home.html')
+        form = ReservationForm()
+    return render(request, 'base.html', {'form': form})
+
 
 def custom_404(request, exception=None):
     return render(request, '404.html', status=404)

@@ -38,6 +38,7 @@ TABLES = (
 )
 
 class Reservation(models.Model):
+  user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
   customer_full_name = models.CharField(max_length=255)
   time_slot = models.IntegerField(choices=TIME_PERIODS, default=0)
   table_number = models.IntegerField(choices=TABLES, default=1),
