@@ -2,7 +2,29 @@ from django.shortcuts import render, redirect
 from .models import Reservation
 from .forms import ReservationForm
 from django.contrib import messages 
+from django.core.exceptions import ValidationError
 
+
+def validate_date(self, value):
+  # Your validation logic here
+  # Example: Check if date is in the future
+  if value < datetime.date.today():
+    raise ValidationError("Reservation date must be in the future")
+
+def reservation_list(request):
+    if request.user.is_authenticated:
+        if request.user.is_superuser or request.user.is_staff:
+            reservations = Reservation.objects.all()
+        else:
+            reservations = Reservation.objects.filter(user=request.user)
+    else:
+        # Handle unauthorized access (e.g., redirect to login page)
+        return redirect('login')  # Replace 'login' with your login URL
+    context = {'reservations': reservations}
+    return render(request, 'reservation_list.html', context)
+
+def home(request):
+    return render(request, 'home.html')
 
 def make_reservation(request):
     if request.method == 'POST':
