@@ -43,7 +43,9 @@ class Reservation(models.Model):
   time_slot = models.IntegerField(choices=TIME_PERIODS, default=0)
   table_number = models.IntegerField(choices=TABLES, default=1),
 
-  def validate_date(self, value):
+  
+
+  def validate_date(value):
     """
     Custom validation function to check the reservation date.
 

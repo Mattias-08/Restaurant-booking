@@ -58,6 +58,32 @@ to the limitations.
 
   ![loading Program](documentation/Invalid_input.png)
 
+## User Stories
+
+All of the user stories are meet and here they are sorted 
+
+### Must
+
+- User Story 1: As a customer, I want to view available booking times for a specific date so that I can choose a suitable time for my reservation.
+- User Story 4: As a customer, I want to be able to cancel or modify my booking up to a certain point so that I can change my plans if necessary.
+- User Story 6: As a customer i want to be able to create and remove my user so i have controll over my personal details
+- User Story 7: As a system, I should be able to manage booking capacity and automatically adjust available times based on bookings.
+
+### Should
+
+- User Story 3: As a customer, I want to receive a booking confirmation with details of my reservation so that I have a record of it.
+- User Story 5: As a system, I should be able to prevent double bookings for the same time slot to ensure availability.
+### Could
+
+- User Story 2: As a customer, I want to be able to specify the number of people in my party when making a booking so that the restaurant can prepare accordingly.
+- User Story 8: As a user Admin i want to be able to view all current bookings so that the kitchen staff can prepare better for each day
+
+---
+
+## Colour Palette
+
+![Color Palette]()
+* The color palette for this project was used for the calming and basic effect that will help the user to make good and confident bookings.
 
 
 ---
@@ -89,7 +115,7 @@ Create a local copy of the GitHub repository by following one of the two process
 
 - Alternatively, Gitpod can be used by click below to create your own workspace using this repository.
 
-  [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://github.com/Mattias-08/three-in-a-row)
+  [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://github.com/Mattias-08/Restaurant-booking)
 
 ### Using Github & Gitpod
 
