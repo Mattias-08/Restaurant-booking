@@ -28,11 +28,12 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = [ '8000-mattias08-restaurantboo-z0msi01h5oq.ws.codeinstitute-ide.net',
-                '.herokuapp.com']
-
+ALLOWED_HOSTS = [
+    '8000-mattias08-restaurantboo-l585hxyd9hl.ws.codeinstitute-ide.net',
+    '.herokuapp.com'
+]
 
 # Application definition
 
@@ -105,7 +106,7 @@ DATABASES = {
 }
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://8000-mattias08-restaurantboo-z0msi01h5oq.ws.codeinstitute-ide.net",
+    "https://8000-mattias08-restaurantboo-l585hxyd9hl.ws.codeinstitute-ide.net",
     "https://*.herokuapp.com"
 ]
 
