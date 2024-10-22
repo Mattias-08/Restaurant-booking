@@ -37,11 +37,18 @@ TABLES = (
     (16, 'Table 16', 8),
 )
 
+class TableManager(models.Manager):
+    def get_queryset(self):
+        # Ensure only tables defined in TABLES are available
+        return super().get_queryset().filter(
+            number__in=[t[0] for t in TABLES]
+        )
+
 class Reservation(models.Model):
   user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
   customer_full_name = models.CharField(max_length=255)
   time_slot = models.IntegerField(choices=TIME_PERIODS, default=0)
-  table_number = models.IntegerField(choices=TABLES, default=1),
+  table_number = models.IntegerField(choices=TABLES, default=1)
 
   
   def validate_date(value):
