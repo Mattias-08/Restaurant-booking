@@ -44,6 +44,25 @@ class TableManager(models.Manager):
             number__in=[t[0] for t in TABLES]
         )
 
+class Table(models.Model):
+    number = models.PositiveSmallIntegerField(unique=True)
+    name = models.CharField(max_length=50)
+    seats = models.PositiveSmallIntegerField(validators=[MinValueValidator(1)])
+
+    objects = TableManager()
+
+    def __str__(self):
+        return f"{self.name} (Seats: {self.seats})"
+
+    def clean(self):
+        # Ensure table details match those in TABLES
+        matching_tables = [t for t in TABLES if t[0] == self.number]
+        if not matching_tables:
+            raise ValidationError(f"Table number {self.number} is not valid.")
+        if self.name != matching_tables[0][1] or self.seats != matching_tables[0][2]:
+            raise ValidationError("Table details do not match predefined values.")
+
+
 class Reservation(models.Model):
   user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
   customer_full_name = models.CharField(max_length=255)
