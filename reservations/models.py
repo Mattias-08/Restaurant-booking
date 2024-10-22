@@ -5,9 +5,6 @@ from django.utils.text import slugify
 from django.core.validators import MinValueValidator
 from django.utils import timezone
 
-
-STATUS = ((0, "Draft"), (1, "Published"))
-
 # Avaiable time periods for booking
 TIME_PERIODS = (
     (0, 17),
@@ -64,8 +61,6 @@ class Table(models.Model):
 
 
 class Reservation(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reservations')
-    customer_full_name = models.CharField(max_length=255)
     time_slot = models.IntegerField(choices=TIME_PERIODS)
     table = models.ForeignKey(Table, on_delete=models.PROTECT)
     date = models.DateField()
@@ -77,3 +72,17 @@ class Reservation(models.Model):
         unique_together = ['date', 'time_slot', 'table']
         indexes = [ models.Index(fields=['date', 'time_slot']),
         ]
+
+      
+    def clean(self):
+        # Validate reservation date
+        if self.date <= timezone.now().date():
+            raise ValidationError('Reservations can only be made for future dates')
+
+        # Validate table availability
+        if not self.is_table_available():
+            raise ValidationError('Selected table is not available for this time slot.')
+
+        # Validate time slot
+        if self.time_slot not in dict(TIME_PERIODS):
+            raise ValidationError('Invalid time slot selected.')
