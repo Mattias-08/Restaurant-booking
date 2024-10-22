@@ -86,3 +86,20 @@ class Reservation(models.Model):
         # Validate time slot
         if self.time_slot not in dict(TIME_PERIODS):
             raise ValidationError('Invalid time slot selected.')
+
+    def is_table_available(self):
+        return not Reservation.objects.filter(
+            date=self.date,
+            time_slot=self.time_slot,
+            table=self.table
+        ).exclude(pk=self.pk).exists()
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        if not self.slug:
+            self.slug = slugify(f"{self.date}-{self.time_slot}", allow_unicode=True)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        selected_time = dict(TIME_PERIODS)[self.time_slot]
+        return f"Reservation ID: {self.id} - {self.date} - {selected_time}, Table: {self.table.name}"
