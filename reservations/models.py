@@ -64,55 +64,16 @@ class Table(models.Model):
 
 
 class Reservation(models.Model):
-  user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
-  customer_full_name = models.CharField(max_length=255)
-  time_slot = models.IntegerField(choices=TIME_PERIODS, default=0)
-  table_number = models.IntegerField(choices=TABLES, default=1)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reservations')
+    customer_full_name = models.CharField(max_length=255)
+    time_slot = models.IntegerField(choices=TIME_PERIODS)
+    table = models.ForeignKey(Table, on_delete=models.PROTECT)
+    date = models.DateField()
+    slug = models.SlugField(max_length=200, unique=True, editable=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
-  
-  def validate_date(value):
-    """
-    Custom validation function to check the reservation date.
-
-    This function ensures the following:
-      - Reservations cannot be made for today or past dates
-    Raises:
-      ValidationError: If the date is today or in the past.
-    """
-    if value <= timezone.now().date():
-      raise ValidationError('Reservations cannot only be made for future dates')
-
-  date = models.DateField(validators=[validate_date])
-
-  def is_table_available(self):
-    """
-    Checks if the selected table is available for the chosen date and time slot.
-    """
-
-    existing_reservations = Reservation.objects.filter(
-      date=self.date,
-      time_slot=self.time_slot,
-      table_number=self.table_number,
-    )
-
-    return not existing_reservations.exists()
-
-  def save(self, *args, **kwargs):
-    if not self.is_table_available():
-      raise ValidationError + \
-        ('Selected table is not available for this time slot.')
-
-    # Generate slug using slugify with allow_unicode=True
-    # for potential internationalization
-    self.slug = slugify(self.name, allow_unicode=True)
-
-    # Call the original save method to persist the reservation after validation
-    super().save(*args, **kwargs)
-
-  def __str__(self):
-    selected_time = TIME_PERIODS[self.time_slot][1]
-    table_info = [t for t in TABLE_CHOICES if t[0] == self.table_number][0]
-    table_name = + \
-      table_info[1] if table_info[1]  else f"Table {self.table_number}"
-    return f"Reservation ID: {self.id} - {self.customer_full_name} + \
-       ({self.date} - {selected_time}, Table: {table_name})"
+    class Meta:
+        unique_together = ['date', 'time_slot', 'table']
+        indexes = [ models.Index(fields=['date', 'time_slot']),
+        ]
