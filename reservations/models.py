@@ -61,6 +61,7 @@ class Table(models.Model):
 
 
 class Reservation(models.Model):
+    customer_full_name = models.CharField(max_length=100)
     time_slot = models.IntegerField(choices=TIME_PERIODS)
     table = models.ForeignKey(Table, on_delete=models.PROTECT)
     date = models.DateField()
