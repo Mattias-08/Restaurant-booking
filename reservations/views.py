@@ -5,21 +5,15 @@ from django.contrib import messages
 from django.core.exceptions import ValidationError
 
 
-def validate_date(self, value):
-  # Your validation logic here
-  # Example: Check if date is in the future
-  if value < datetime.date.today():
-    raise ValidationError("Reservation date must be in the future")
-
 def reservation_list(request):
     if request.user.is_authenticated:
-        if request.user.is_superuser or request.user.is_staff:
+        if request.user.is_superuser:
             reservations = Reservation.objects.all()
         else:
             reservations = Reservation.objects.filter(user=request.user)
     else:
         # Handle unauthorized access (e.g., redirect to login page)
-        return redirect('login')  # Replace 'login' with your login URL
+        return redirect('account_login')
     context = {'reservations': reservations}
     return render(request, 'reservation_list.html', context)
 
@@ -37,7 +31,7 @@ def make_reservation(request):
                 messages.success(request, '''Your reservation has 
                     been submitted successfully! 
                     We will confirm your reservation shortly.''')
-                return redirect('home')  # Redirect to home page after success
+                return redirect('base.html')  # Redirect to home page after success
             else:
                 form.add_error(None, + \
                     'Selected table is not available for this time slot.')
