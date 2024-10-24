@@ -68,6 +68,11 @@ class Reservation(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def clean(self):
+        cleaned_data = super().clean()
+        cleaned_data['customer_full_name'] = self.request.user.username
+        return cleaned_data
+
     class Meta:
         unique_together = ['date', 'time_slot', 'table']
         indexes = [ models.Index(fields=['date', 'time_slot']),
