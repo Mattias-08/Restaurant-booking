@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Reservation
+from .models import Reservation, Table
 from .forms import ReservationForm
 from django.contrib import messages 
 from django.core.exceptions import ValidationError
@@ -24,20 +24,22 @@ def make_reservation(request):
     if request.method == 'POST':
         form = ReservationForm(request.POST)
         if form.is_valid():
-            reservation = form.save(commit=False) 
-  # Don't save immediately for validation
-            if reservation.is_table_available():  # Check for table availability
-                reservation.save()
-                messages.success(request, '''Your reservation has 
-                    been submitted successfully! 
-                    We will confirm your reservation shortly.''')
-                return redirect('base.html')  # Redirect to home page after success
-            else:
-                form.add_error(None, + \
-                    'Selected table is not available for this time slot.')
+            reservation = form.save(commit=False)
+            reservation.customer = request.user
+            reservation.save()
+            messages.success(request, "Reservation created successfully!")
+            return redirect('reservations')
+        else:
+            messages.error(request, "Reservation failed. Please check the form.")
     else:
+        date = request.GET.get('date')
+        time_slot = request.GET.get('time_slot')
+        if date and time_slot:
+            available_tables = Table.objects.filter(is_available=True).get_available_tables(date, time_slot)
+        else:
+            available_tables = Table.objects.all()
         form = ReservationForm()
-    return render(request, 'base.html', {'form': form})
+    return render(request, 'reservation_form.html', {'form': form, 'available_tables': available_tables, 'date': date, 'time_slot': time_slot})
 
 def custom_404(request, exception=None):
     return render(request, '404.html', status=404)
