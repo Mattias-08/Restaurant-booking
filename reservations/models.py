@@ -41,6 +41,7 @@ class TableManager(models.Manager):
             number__in=[t[0] for t in TABLES]
         )
 
+
 class Table(models.Model):
     number = models.PositiveSmallIntegerField(unique=True)
     name = models.CharField(max_length=50)
@@ -58,21 +59,19 @@ class Table(models.Model):
             raise ValidationError(f"Table number {self.number} is not valid.")
         if self.name != matching_tables[0][1] or self.seats != matching_tables[0][2]:
             raise ValidationError("Table details do not match predefined values.")
+    
+    def is_available(self, date, time_slot):
+        return not self.reservation_set.filter(date=date, time_slot=time_slot).exists()
 
 
 class Reservation(models.Model):
-    customer_full_name = models.CharField(max_length=100)
+    customer = models.ForeignKey(User, on_delete=models.CASCADE)
     time_slot = models.IntegerField(choices=TIME_PERIODS)
     table = models.ForeignKey(Table, on_delete=models.PROTECT)
     date = models.DateField()
     slug = models.SlugField(max_length=200, unique=True, editable=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-    def clean(self):
-        cleaned_data = super().clean()
-        cleaned_data['customer_full_name'] = self.request.user.username
-        return cleaned_data
 
     class Meta:
         unique_together = ['date', 'time_slot', 'table']
@@ -92,13 +91,6 @@ class Reservation(models.Model):
         # Validate time slot
         if self.time_slot not in dict(TIME_PERIODS):
             raise ValidationError('Invalid time slot selected.')
-
-    def is_table_available(self):
-        return not Reservation.objects.filter(
-            date=self.date,
-            time_slot=self.time_slot,
-            table=self.table
-        ).exclude(pk=self.pk).exists()
 
     def save(self, *args, **kwargs):
         self.full_clean()
