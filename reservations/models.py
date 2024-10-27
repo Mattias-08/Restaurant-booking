@@ -34,34 +34,12 @@ TABLES = (
     (16, 'Table 16', 8),
 )
 
-class TableManager(models.Manager):
-    def get_queryset(self):
-        # Ensure only tables defined in TABLES are available
-        return super().get_queryset().filter(
-            number__in=[t[0] for t in TABLES]
-        )
-
-
 class Table(models.Model):
-    number = models.PositiveSmallIntegerField(unique=True)
-    name = models.CharField(max_length=50)
+    number = models.PositiveSmallIntegerField(unique=True, choices=[(table[0], table[1]) for table in TABLES])
     seats = models.PositiveSmallIntegerField(validators=[MinValueValidator(1)])
 
-    objects = TableManager()
-
     def __str__(self):
-        return f"{self.name} (Seats: {self.seats})"
-
-    def clean(self):
-        # Ensure table details match those in TABLES
-        matching_tables = [t for t in TABLES if t[0] == self.number]
-        if not matching_tables:
-            raise ValidationError(f"Table number {self.number} is not valid.")
-        if self.name != matching_tables[0][1] or self.seats != matching_tables[0][2]:
-            raise ValidationError("Table details do not match predefined values.")
-    
-    def is_available(self, date, time_slot):
-        return not self.reservation_set.filter(date=date, time_slot=time_slot).exists()
+        return self.name
 
 
 class Reservation(models.Model):
