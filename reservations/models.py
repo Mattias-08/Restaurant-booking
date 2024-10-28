@@ -20,7 +20,7 @@ class Table(models.Model):
     seats = models.PositiveSmallIntegerField(validators=[MinValueValidator(1)])
 
     def __str__(self):
-        return self.name
+        return self.seats
 
 
 class Reservation(models.Model):
@@ -59,4 +59,4 @@ class Reservation(models.Model):
 
     def __str__(self):
         selected_time = dict(TIME_PERIODS)[self.time_slot]
-        return f"Reservation ID: {self.id} - {self.date} - {selected_time}, Table: {self.table.name}"
+        return f"Reservation ID: {self.id} - {self.date} - {selected_time}, Table: {self.table.seats}"
