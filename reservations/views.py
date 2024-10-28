@@ -10,6 +10,7 @@ from crispy_forms.layout import Submit, Layout
 
 
 def reservation_list(request):
+
     if request.user.is_authenticated:
         if request.user.is_superuser:
             reservations = Reservation.objects.all()
@@ -22,9 +23,10 @@ def reservation_list(request):
     return render(request, 'reservation_list.html', context)
 
 def home(request):
+    reservation_form = ReservationForm(request.POST)
     if request.user.is_authenticated:
-        reservations = Reservation.objects.filter(user=request.user)
-        return render(request, 'home.html', {'reservations': reservations})
+        reservations = Reservation.objects.filter(customer=request.user)
+        return render(request, 'home.html', {'reservations': reservations, 'reservation_form': reservation_form})
     else:
         return render(request, 'home.html')
 

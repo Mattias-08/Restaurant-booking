@@ -14,28 +14,10 @@ TIME_PERIODS = (
     (4, 21),
     (5, 22),
 )
-# Table number, name, number of seats
-TABLES = (
-    (1, 'Table 1', 2),
-    (2, 'Table 2', 2),
-    (3, 'Table 3', 4),
-    (4, 'Table 4', 4),
-    (5, 'Table 5', 4),
-    (6, 'Table 6', 4),
-    (7, 'Table 7', 2),
-    (8, 'Table 8', 2),
-    (9, 'Table 9', 6),
-    (10, 'Table 10', 6),
-    (11, 'Table 11', 6),
-    (12, 'Table 12', 4),
-    (13, 'Table 13', 4),
-    (14, 'Table 14', 4),
-    (15, 'Table 15', 8),
-    (16, 'Table 16', 8),
-)
+
 
 class Table(models.Model):
-    number = models.PositiveSmallIntegerField(unique=True, choices=[(table[0], table[1]) for table in TABLES])
+    number = models.PositiveSmallIntegerField(unique=True, choices=TABLES)
     seats = models.PositiveSmallIntegerField(validators=[MinValueValidator(1)])
 
     def __str__(self):
