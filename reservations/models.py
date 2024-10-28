@@ -17,7 +17,6 @@ TIME_PERIODS = (
 
 
 class Table(models.Model):
-    number = models.PositiveSmallIntegerField(unique=True, choices=TABLES)
     seats = models.PositiveSmallIntegerField(validators=[MinValueValidator(1)])
 
     def __str__(self):
