@@ -18,5 +18,10 @@
     {% endif %}
 
     <h2>Make a Reservation</h2>
+    <form method="post" action="{% url 'make_reservation' %}">
+      {% csrf_token %}
+      {{ reservation_form|crispy }}
+      <button type="submit" class="btn btn-outline-success">Submit Reservation</button>
+  </form>
   </div>
 {% endblock content%}

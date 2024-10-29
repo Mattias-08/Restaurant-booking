@@ -46,17 +46,19 @@ class Reservation(models.Model):
         ).exists()
 
     def clean(self):
-        # Validate reservation date
-        if self.date <= timezone.now().date():
-            raise ValidationError('Reservations can only be made for future dates')
+            # Validate reservation date
+        if self.date is not None and self.date <= timezone.now().date():
+            raise ValidationError('Reservations can only be made for future dates.')
 
-        # Validate table availability
-        if not self.is_table_available():
-            raise ValidationError('Selected table is not available for this time slot.')
+    # Validate table availability only if date and time_slot are set
+        if self.date is not None and self.time_slot is not None:
+            if not self.is_table_available():
+                raise ValidationError('Selected table is not available for this time slot.')
 
         # Validate time slot
         if self.time_slot not in dict(TIME_PERIODS):
-            raise ValidationError('Invalid time slot selected.')
+            if not self.is_table_available():
+                raise ValidationError('Invalid time slot selected.')
 
     def save(self, *args, **kwargs):
         self.full_clean()
