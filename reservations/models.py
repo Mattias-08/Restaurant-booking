@@ -20,7 +20,7 @@ class Table(models.Model):
     seats = models.PositiveSmallIntegerField(validators=[MinValueValidator(1)])
 
     def __str__(self):
-        return self.seats
+        return f"Table with {self.seats} seats"
 
 
 class Reservation(models.Model):
@@ -38,6 +38,13 @@ class Reservation(models.Model):
         ]
 
       
+    def is_table_available(self):
+            return not Reservation.objects.filter(
+            date=self.date,
+            time_slot=self.time_slot,
+            table=self.table
+        ).exists()
+
     def clean(self):
         # Validate reservation date
         if self.date <= timezone.now().date():
