@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+
+      {% if success_message %}
+          <div class="alert alert-success">{{ success_message }}</div>
+      {% elif error_message %}
+          <div class="alert alert-danger">{{ error_message }}</div>
+      {% endif   
+ %}
+
+      {% if user.is_authenticated %}
+          <h2>Your Reservations</h2>
+          <ul>
+            {% for reservation in reservations %}
+              <li>
+                Date: {{ reservation.date }} - Time: {{ reservation.time_slot }} - Table: {{ reservation.table }}
+              </li>
+            {% endfor %}
+          </ul>
+      {% endif %}
+
+      <div class="text-center mt-3">
+        <a href="{% url 'home' %}" class="btn btn-primary">Back to Homepage</a>
+        <a href="{% url 'make_reservation' %}" class="btn btn-secondary">Make Another Reservation</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

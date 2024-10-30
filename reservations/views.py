@@ -34,13 +34,16 @@ def make_reservation(request):
     if request.method == 'POST':
         form = ReservationForm(request.POST)
         if form.is_valid():
-            reservation = form.save(commit=False)
-            reservation.user = request.user
-            reservation.save()
-            messages.success(request, "Reservation created successfully!")
-            return redirect('home')
+            try:
+                reservation = form.save(commit=False)
+                reservation.user = request.user
+                reservation.save()
+                return render(request, 'reservation_form.html', {'form': form, 'success_message': 'Reservation created successfully!'})
+            except Exception as e:
+                # Log the error or handle it appropriately
+                return render(request, 'reservation_form.html', {'form': form, 'error_message': 'An error occurred while saving the reservation. Please try again later.'})
         else:
-            messages.error(request, "Reservation failed. Please check the form.")
+            return render(request, 'reservation_form.html', {'form': form, 'error_message': 'Reservation failed. Please check the form for errors.'})
     else:
         form = ReservationForm()
         helper = FormHelper()
