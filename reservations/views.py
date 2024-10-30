@@ -23,12 +23,15 @@ def reservation_list(request):
     return render(request, 'reservation_list.html', context)
 
 def home(request):
+    return render(request, 'index.html')  # Render the homepage
+
+def booking(request):
     reservation_form = ReservationForm(request.POST)
     if request.user.is_authenticated:
         reservations = Reservation.objects.filter(customer=request.user)
-        return render(request, 'home.html', {'reservations': reservations, 'reservation_form': reservation_form})
+        return render(request, 'booking.html', {'reservations': reservations, 'reservation_form': reservation_form})
     else:
-        return render(request, 'home.html')
+        return render(request, 'booking.html')
 
 def make_reservation(request):
     if request.method == 'POST':

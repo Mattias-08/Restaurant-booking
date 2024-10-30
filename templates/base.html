@@ -25,7 +25,6 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-
 </head>
 
 <body class="d-flex flex-column h-100 main-bg">
@@ -42,7 +41,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == reservations_url %}active{% endif %}" aria-current="page"
-                        href="{% url 'home' %}">Reservations</a>
+                        href="{% url 'make_reservation' %}">Reservations</a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
