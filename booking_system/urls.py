@@ -19,9 +19,8 @@ from django.urls import path, include
 from reservations import views
 
 urlpatterns = [
-    path('', views.home, name='home'),
-    path('make-reservation/', views.make_reservation, name='make_reservation'),
-    path('admin/', admin.site.urls),
-    path("accounts/", include("allauth.urls")),
-    path('reservations/', views.reservation_list, name='reservations'),
+    path('', views.home, name='home'),  # Homepage
+    path('make-reservation/', views.make_reservation, name='make_reservation'),  # Reservation form submission
+    path('admin/', admin.site.urls),  # Admin panel
+    path("accounts/", include("allauth.urls")),  # Authentication URLs
 ]
