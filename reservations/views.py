@@ -23,7 +23,7 @@ def reservation_list(request):
     return render(request, 'reservation_list.html', context)
 
 def home(request):
-    return render(request, 'index.html')  # Render the homepage
+    return render(request, 'booking.html')  # Render the homepage
 
 def booking(request):
     reservation_form = ReservationForm(request.POST)
