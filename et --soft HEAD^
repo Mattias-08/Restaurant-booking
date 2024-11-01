@@ -1,0 +1,161 @@
+[33mcommit c6ff0ad7637d48cdb3d5b9bdc0332bd2e4929ac6[m[33m ([m[1;36mHEAD[m[33m)[m
+Author: Mattias Jörntell <mattias.jorntell@gmail.com>
+Date:   Fri Nov 1 13:38:37 2024 +0000
+
+    restoring files after accidental delete
+
+[33mcommit 0689002b4d553a9939c81807b66010f08b62e2e8[m
+Author: Mattias Jörntell <mattias.jorntell@gmail.com>
+Date:   Thu Oct 31 14:35:50 2024 +0000
+
+    rename customer variable in make_reservation/ views.py
+
+[33mcommit 4513ccca25c015f3c81b7accae209ea9e87b36b6[m
+Author: Mattias Jörntell <mattias.jorntell@gmail.com>
+Date:   Thu Oct 31 12:35:36 2024 +0000
+
+    some small adjustments for url and booking.html
+
+[33mcommit 0d178e65e036ad856588b58a11c0ef1192fac962[m
+Author: Mattias Jörntell <mattias.jorntell@gmail.com>
+Date:   Wed Oct 30 20:23:50 2024 +0000
+
+    reversed most of previous commit add booking too url.py and adjust views.py accordingly
+
+[33mcommit 8b44a393dbe489f869d3185d3d90b1ac7360f943[m
+Author: Mattias Jörntell <mattias.jorntell@gmail.com>
+Date:   Wed Oct 30 19:48:29 2024 +0000
+
+    adjust url.py, adjust index.html linking and rename home.html too booking.html
+
+[33mcommit 61b7e8b80c07973fca8a27575f94a7370e3b156b[m
+Author: Mattias Jörntell <mattias.jorntell@gmail.com>
+Date:   Wed Oct 30 13:04:48 2024 +0000
+
+    add reservation_form.html and update make_reservation in view accordingly
+
+[33mcommit 0367c7b28d06fa933710009f981f76e0ec2769d9[m
+Author: Mattias Jörntell <mattias.jorntell@gmail.com>
+Date:   Tue Oct 29 19:32:21 2024 +0000
+
+    add index.html
+
+[33mcommit 5c83d705bc9a4e0e3d0c6f27688f03e680ba730c[m
+Author: Mattias Jörntell <mattias.jorntell@gmail.com>
+Date:   Tue Oct 29 19:16:28 2024 +0000
+
+    adjust home.html and delete index.html
+
+[33mcommit ac481334a60a3376fbe71bfd91b7f3b6f85349e7[m
+Author: Mattias Jörntell <mattias.jorntell@gmail.com>
+Date:   Tue Oct 29 18:28:48 2024 +0000
+
+    adjust clean method in models
+
+[33mcommit dcf89fe7aee8e8f88dcafc67dd851b725e96f51d[m
+Author: Mattias Jörntell <mattias.jorntell@gmail.com>
+Date:   Tue Oct 29 14:50:37 2024 +0000
+
+    add is_table_available method to models
+
+[33mcommit 71121cb4501bb282ea022c2ee5cc4ad5e4606595[m
+Author: Mattias Jörntell <mattias.jorntell@gmail.com>
+Date:   Mon Oct 28 15:38:27 2024 +0000
+
+    adjust name to seats on Models
+
+[33mcommit 6f5856bd749e5ca915386534f588a751c1cff56f[m
+Author: Mattias Jörntell <mattias.jorntell@gmail.com>
+Date:   Mon Oct 28 15:25:07 2024 +0000
+
+    adjust Table in models
+
+[33mcommit 9c2d0d64bca05e1f87e3a8d6974e24e407fa7562[m
+Author: Mattias Jörntell <mattias.jorntell@gmail.com>
+Date:   Mon Oct 28 15:16:14 2024 +0000
+
+    remove TABLES from models
+
+[33mcommit b5efbca2f216123b8e5d7a1b95e8c20d847d50b0[m
+Author: Mattias Jörntell <mattias.jorntell@gmail.com>
+Date:   Mon Oct 28 12:34:30 2024 +0000
+
+    adjust home html and add reservation_form for crispy_form logic
+
+[33mcommit e9a03fb3247c289d8c60f88f134a77f6630a9472[m
+Author: Mattias Jörntell <mattias.jorntell@gmail.com>
+Date:   Mon Oct 28 12:27:39 2024 +0000
+
+    add crispy forms to view and adjust logic
+
+[33mcommit 05edf62183afd761104363ae31d8b5244e01dfe1[m
+Author: Mattias Jörntell <mattias.jorntell@gmail.com>
+Date:   Sun Oct 27 19:36:25 2024 +0000
+
+    adjust views and add available_tables then and update home.html accordingly
+
+[33mcommit 8bbf307c2ae8d289398154e8a31b0d2de53fc3ca[m
+Author: Mattias Jörntell <mattias.jorntell@gmail.com>
+Date:   Fri Oct 25 18:00:23 2024 +0000
+
+    update forms.py
+
+[33mcommit af8df2f9dc28e3b544d0b31a94293ee9480b8dfd[m
+Author: Mattias Jörntell <mattias.jorntell@gmail.com>
+Date:   Fri Oct 25 17:46:07 2024 +0000
+
+    Removed redundant is_table_available check, simplified reservation form handling.
+
+[33mcommit cd907616c3efa9b0198f4a2ba229766767e1fc62[m
+Author: Mattias Jörntell <mattias.jorntell@gmail.com>
+Date:   Fri Oct 25 16:50:55 2024 +0000
+
+    Remove redundant is_table_available method. Simplified reservation validation.
+
+[33mcommit 907f4f08c51b0bc0602c4ae3e815c087b6f2114f[m
+Author: Mattias Jörntell <mattias.jorntell@gmail.com>
+Date:   Thu Oct 24 16:17:05 2024 +0000
+
+    update views linking
+
+[33mcommit e1c0e2fcad8fa8ca9e1cd2061207d6bf6ca8b639[m
+Author: Mattias Jörntell <mattias.jorntell@gmail.com>
+Date:   Thu Oct 24 13:21:42 2024 +0000
+
+    add customer_full-name in reservation in order to adjust it later in the class
+
+[33mcommit e51904c31a683e7152d96e6f609b539ca5304dd6[m
+Author: Mattias Jörntell <mattias.jorntell@gmail.com>
+Date:   Thu Oct 24 13:08:57 2024 +0000
+
+    ReservationForm: Add  method to pre-populate customer_full_name with username
+
+[33mcommit 6493895cebac9d042fca2e0222a6a2e7f7a7cca5[m
+Author: Mattias Jörntell <mattias.jorntell@gmail.com>
+Date:   Thu Oct 24 12:46:11 2024 +0000
+
+    add correct url-linking in views.py and remove date validation from views.py
+
+[33mcommit dff85f894e4f7bffc7cd10ce2ad9ff04ebda7081[m
+Author: Mattias Jörntell <mattias.jorntell@gmail.com>
+Date:   Tue Oct 22 16:55:47 2024 +0000
+
+    add feat for reservations which Implement table availability check in is_table_available() and update save() to handle slug generation
+
+[33mcommit c67f4cda6764664a83b67f08bdc80280dbab0608[m
+Author: Mattias Jörntell <mattias.jorntell@gmail.com>
+Date:   Tue Oct 22 16:47:02 2024 +0000
+
+    add feat for reservations which Implement validations for date, time slot, table availability, and customer name in clean().
+
+[33mcommit 161241791bd92e63b55049ae8eeb3ad967b35ba5[m
+Author: Mattias Jörntell <mattias.jorntell@gmail.com>
+Date:   Tue Oct 22 16:28:39 2024 +0000
+
+    add Reservation model with validation for date, time slot, table availability, and customer name. Implement unique constraint for date, time slot, and table. Removed old reservation class
+
+[33mcommit a0d39f34aa94b10e222ca3538b8dccce7ebfaff0[m
+Author: Mattias Jörntell <mattias.jorntell@gmail.com>
+Date:   Tue Oct 22 16:10:31 2024 +0000
+
+    add Table model with custom manager to enforce table constraints and validate table data.
