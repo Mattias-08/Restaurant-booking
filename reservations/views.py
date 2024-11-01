@@ -25,34 +25,29 @@ def reservation_list(request):
 def home(request):
     return render(request, 'index.html')  # Render the homepage
 
-def booking(request):
-    reservation_form = ReservationForm(request.POST)
-    if request.user.is_authenticated:
-        reservations = Reservation.objects.filter(customer=request.user)
-        return render(request, 'booking.html', {'reservations': reservations, 'reservation_form': reservation_form})
-    else:
-        return render(request, 'booking.html')
-
 def make_reservation(request):
+    form = ReservationForm()
+    helper = FormHelper()
+    helper.form_method = 'post'
+    helper.form_action = 'make_reservation'
+    helper.form_class = 'form-horizontal'
+    helper.add_input(Submit('submit', 'Submit Reservation'))
+    form.helper = helper
+    error_message = ''
     if request.method == 'POST':
-        form = ReservationForm(request.POST)
+        form_with_args = ReservationForm(request.POST)
         if form.is_valid():
             try:
-                reservation = form.save(commit=False)
+                reservation = form_with_args.save(commit=False)
                 reservation.customer = request.user
                 reservation.save()
-                return render(request, 'reservation_form.html', {'form': form, 'success_message': 'Reservation created successfully!'})
+                return render(request, 'reservation_success.html', {'form': form_with_args, 'success_message': 'Reservation created successfully!'})
             except Exception as e:
                 # Log the error or handle it appropriately
-                return render(request, 'reservation_form.html', {'form': form, 'error_message': 'An error occurred while saving the reservation. Please try again later.'})
+                error_message = 'An error occurred while saving the reservation. Please try again later.'
+                return render(request, 'booking.html', {'form': form, 'error_message': error_message})
         else:
-            return render(request, 'reservation_form.html', {'form': form, 'error_message': 'Reservation failed. Please check the form for errors.'})
+            error_message = 'Reservation failed. Please check the form for errors.'
+            return render(request, 'booking.html', {'form': form, 'error_message': error_message})
     else:
-        form = ReservationForm()
-        helper = FormHelper()
-        helper.form_method = 'post'
-        helper.form_action = 'make_reservation'
-        helper.form_class = 'form-horizontal'
-        helper.add_input(Submit('submit', 'Submit Reservation'))
-        form.helper = helper
-        return render(request, 'reservation_form.html', {'form': form})
+        return render(request, 'booking.html', {'form': form})
