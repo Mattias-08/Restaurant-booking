@@ -18,7 +18,6 @@
           <ul>
             {% for reservation in reservations %}
               <li>
-                <a href="{% url 'reservation_detail' reservation.id %}">
                 Date: {{ reservation.date }} - Time: {{ reservation.get_time_slot_display  }} - Table: {{ reservation.table }}
               </li>
             {% endfor %}

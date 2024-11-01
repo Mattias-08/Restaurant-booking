@@ -31,10 +31,14 @@ body {
     background-color: #445261;
 }
 
-/* Main background color */
-.main-bg {
-    background-color: #F2F2F2;
-}
+/* Main section styles */
+.main-section {
+    background-image: url('{% static "images/welcome_image.jpg" %}');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
 
 /* Card style */
 .card {
