@@ -19,10 +19,8 @@ from django.urls import path, include
 from reservations import views
 
 urlpatterns = [
-    path('', views.home, name='home'),
-    path('make-reservation/', views.make_reservation, name='make_reservation'),
+    path('', include('reservations.urls')),
     path('admin/', admin.site.urls),
     path("accounts/", include("allauth.urls")),
-    path('reservations/', views.reservation_list, name='reservations'),
-    path('booking/', views.booking, name='booking'), 
+
 ]
