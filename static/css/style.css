@@ -1,62 +1,75 @@
+/* Body background color */
 body {
-    background-color: #F9FAFC;
+    background-color: #F2F2F2;
 }
 
+/* Brand font, size, weight, and color */
 .brand {
     font-family: Lato, sans-serif;
     font-size: 1.4rem;
     font-weight: 700;
-    color: #4A4A4F;
+    color: #333;
 }
 
+/* Red color for specific elements */
 .red-o {
-    color: #E84610;
+    color: #990000;
 }
 
+/* Light text color */
 .thin {
     font-weight: 300;
 }
 
+/* Light background color */
 .light-bg {
     background-color: #fff;
 }
 
+/* Dark background color */
 .dark-bg {
     background-color: #445261;
 }
 
+/* Main background color */
 .main-bg {
-    background-color: #F9FAFC;
+    background-color: #F2F2F2;
 }
 
+/* Card style */
 .card {
     border: none;
     background-color: transparent;
 }
 
+/* Image container styles */
 .image-container {
     position: relative;
 }
 
+/* Image flash styles */
 .image-flash {
     position: absolute;
     bottom: 5%;
     min-width: 30%;
     left: -2px;
-    background-color: #188181;
+    background-color: #990000;
 }
 
+/* Image scaling styles */
 .scale {
     width: 100%;
     height: auto;
 }
 
+/* Author name styles */
 .author {
     color: white;
     margin: 4px;
     text-transform: uppercase;
 }
 
+/* Masthead styles */
 .masthead {
     margin-top: 10px;
     overflow: hidden;
@@ -64,14 +77,17 @@ body {
     display: inline-block;
     height: 33vh;
     width: 100%;
+    background-color: #333; /* Darker background for the masthead */
 }
 
+/* Masthead text styles */
 .masthead-text {
     background-color: #445261;
     color: white;
     position: relative;
 }
 
+/* Masthead image overlay styles */
 .masthead-image {
     position: relative;
     overflow: hidden;
@@ -84,78 +100,97 @@ body {
     right: 90%;
     height: 100%;
     width: 150%;
-    background: #445261;
+    background:   
+ #333; /* Darker background for the overlay */
     -webkit-transform: skew(15deg);
     -moz-transform: skew(15deg);
     transform: skew(15deg);
     z-index: 100;
 }
 
+/* Post link styles */
 .post-link {
     text-decoration: none;
     color: #445261;
 }
 
+/* Post link hover styles */
 .post-link:hover,
 .page-link {
-    color: #E84610;
+    color: #990000;
 }
 
+/* Post title styles */
 .post-title {
     margin-top: 10%;
     margin-left: 5%;
+    color: #fff; /* White title on dark background */
 }
 
+/* Post subtitle styles */
 .post-subtitle {
     margin-left: 5%;
-    color: lightgray;
+    color: #ccc; /* Lighter gray text on dark background */
 }
 
+/* Button styles */
 .btn-signup,
 .btn-edit {
-    background-color: #188181;
+    background-color: #990000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Button hover styles */
+.btn-signup:hover,
+.btn-signup:active {
+    background-color: #660000;
     color: #fff;
 }
 
-.btn-signup:hover,
-.btn-signup:active {
-    background-color: #fff;
-    color: #23BBBB;
-}
-
+/* Link styles */
 .link {
     color: #23BBBB;
     text-decoration: none;
 }
 
+/* Link hover styles */
 .link:hover,
 .link:active {
     color: #445261;
     text-decoration: underline;
 }
 
+/* Like button styles */
 .btn-like {
-    color: #E84610;
+    color: #990000;
     border: none;
     background: transparent;
 }
 
+/* Delete button styles */
 .btn-delete {
     color: #fff;
-    background: #E84610;
+    background: #990000;
 }
 
+/* Like button hover styles */
 .btn-like:hover,
 .btn-like:active {
-    color: #E84610;
+    color: #990000;
     background: transparent;
     border: none;
 }
 
+/* Faded text color */
 .faded {
     color: rgb(172, 175, 175);
 }
 
+/* Approval color */
 .approval {
     color: rgb(222, 146, 168);
 }

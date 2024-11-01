@@ -11,7 +11,7 @@
                     {% for reservation in reservations %}
                         <li>
                             Date: {{ reservation.date }}<br>
-                            Time: {{ reservation.time_slot }}<br>
+                            Time: {{ reservation.get_time_slot_display }}<br>
                             Table: {{ reservation.table }}
                         </li>
                     {% endfor %}
