@@ -5,7 +5,8 @@ from .forms import ReservationForm
 from django.contrib import messages 
 from django.core.exceptions import ValidationError
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit, Layout   
+from crispy_forms.layout import Submit, Layout
+from django.views.generic import ListView   
 
 def reservation_edit(request):
      return render(request, 'index.html') 
@@ -16,18 +17,15 @@ def reservation_success(request):
 def reservation_remove(request):  
      return render(request, 'index.html') 
 
-def reservation_list(request):
+class ReservationListView(ListView):
+    template_name = 'reservation_list.html'
 
-    if request.user.is_authenticated:
-        if request.user.is_superuser:
-            reservations = Reservation.objects.all()
+    def get_queryset(self):
+        if self.request.user.is_superuser:
+            return Reservation.objects.all()
         else:
-            reservations = Reservation.objects.filter(user=request.user)
-    else:
-        # Handle unauthorized access (e.g., redirect to login page)
-        return redirect('account_login')
-    context = {'reservations': reservations}
-    return render(request, 'reservation_list.html', context)
+            return Reservation.objects.filter(user=self.request.user)
+
 
 def home(request):
     return render(request, 'index.html')  # Render the homepage

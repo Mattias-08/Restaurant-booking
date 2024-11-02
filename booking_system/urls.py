@@ -16,11 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from reservations import views
+from .views import handler404
 
 urlpatterns = [
-    path('', include('reservations.urls')),
+    path('reservations/', include('reservations.urls')),
     path('admin/', admin.site.urls),
     path("accounts/", include("allauth.urls")),
 
 ]
+
+handler404 = 'booking_system.views.handler404'

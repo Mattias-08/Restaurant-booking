@@ -7,7 +7,6 @@
         <div class="col-md-6">
             {% if user.is_authenticated %}
                 {% include 'reservation_list.html' %}
-                </ul>
             {% else %}
                 <h2>You need to be logged in to view your reservations and make new ones.</h2>
                 <a href="{% url 'account_login' %}" class="btn btn-primary">Log In</a>
@@ -18,7 +17,7 @@
         <div class="col-md-6">
             {% if user.is_authenticated %}
                 <h2>Make a Reservation</h2>
-                <form method="post" action="{% url 'reservation_list' %}">
+                <form method="post" action="{% url 'make_reservation' %}">
                     {% csrf_token %}
                     {{ reservation_form|crispy }}
                     <button type="submit" class="btn btn-outline-success">Submit Reservation</button>
