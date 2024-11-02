@@ -7,7 +7,14 @@ from django.core.exceptions import ValidationError
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout   
 
+def reservation_edit(request):
+     return render(request, 'index.html') 
 
+def reservation_success(request):
+     return render(request, 'index.html') 
+
+def reservation_remove(request):  
+     return render(request, 'index.html') 
 
 def reservation_list(request):
 
