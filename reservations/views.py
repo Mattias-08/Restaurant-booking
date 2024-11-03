@@ -54,34 +54,20 @@ def make_reservation(request):
     helper.form_class = 'form-horizontal'
     helper.add_input(Submit('submit', 'Submit Reservation'))
     form.helper = helper
+
     if request.method == 'POST':
         form_with_args = ReservationForm(request.POST)
-        if form.is_valid():
+        if form_with_args.is_valid():
             try:
                 reservation = form_with_args.save(commit=False)
                 reservation.customer = request.user
                 reservation.save()
-                return render(request, 'reservation_success.html', {'form': form_with_args, 'success_message': 'Reservation created successfully!'})
+                return render(request, 'reservation_success.html', {'reservation': reservation, 'success_message': 'Reservation created successfully!'})
             except Exception as e:
-                # Log the error for debugging
-                logger.exception(f"Error saving reservation: {e}")  
-                return render(request, 'reservations/make_reservation.html', {'form': form, 'error_message': 'An error occurred while processing your reservation. Please try again later.'})
+                print("Error saving reservation:", e)
+                return render(request, 'reservations/make_reservation.html', {'form': form_with_args, 'error_message': 'An error occurred while processing your reservation. Please try again later.'})
         else:
-            return render(request, 'reservations/make_reservation.html', {'form': form, 'error_message': 'Reservation failed. Please check the form for errors.'})
+            print('Form errors:', form_with_args.errors)
+            return render(request, 'reservations/make_reservation.html', {'form': form_with_args, 'error_message': 'Reservation failed. Please check the form for errors.'})
     else:
-        return render(request, 'reservations/make_reservation.html', {'form': form})
-    
-    if request.is_ajax() and request.method == 'GET':
-        selected_date = request.GET.get('date')
-        selected_time_slot = request.GET.get('time_slot')
-
-        available_tables = Table.objects.filter(
-            reservation__date=selected_date,
-            reservation__time_slot=selected_time_slot,
-            reservation__is_table_available=True
-        ).distinct()
-
-        return JsonResponse({'tables': list(available_tables.values_list('id', flat=True))})
-
-    
-    
+        return render(request, 'reservations/make_reservation.html', {'form': form}) 

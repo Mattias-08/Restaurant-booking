@@ -1,5 +1,5 @@
 
-# Three in a row
+# The Restuarant
 
 ![Responsive Mockup]
 

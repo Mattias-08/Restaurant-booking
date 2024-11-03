@@ -8,6 +8,6 @@ class ReservationForm(forms.ModelForm):
         fields = ['date', 'time_slot', 'table']
         widgets = {
             'date': forms.DateInput(attrs={'type': 'date'}),
-            'time_slot': forms.Select(attrs={'class': 'form-select'}),
-            'table': forms.Select(attrs={'class': 'form-select'})
+            'time_slot': forms.Select(attrs={'class': 'form-control'}),
+            'table': forms.Select(attrs={'class': 'form-control'})
         }
