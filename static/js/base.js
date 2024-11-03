@@ -1,23 +1,33 @@
 $(document).ready(function() {
+    // General constants
+    const base_url = window.location.origin;
+    const reservationUrl = "/make_reservation/";
+    const getTablesUrl = "/get_available_tables/";
+    const dateField = $('#id_date');
+    const timeSlotField = $('#id_time_slot');
+    const tableField = $('#id_table');
+    const tableAvailabilityMessage = $("#table-availability-message");
+
+    // Functions
     const checkTableAvailability = (date, timeSlot) => {
         $.ajax({
-            url: "{% url 'get_available_tables' %}",
+            url: getTablesUrl,
             type: "GET",
             data: {
                 date: date,
                 time_slot: timeSlot
             },
             success: function(response) {
-                $("#id_table").empty(); // Clear existing options
-                $("#id_table").append('<option disabled selected value="">-- Select Table --</option>');
+                tableField.empty(); // Clear existing options
+                tableField.append('<option disabled selected value="">-- Select Table --</option>');
 
                 if (response.tables.length > 0) {
                     $.each(response.tables, function(index, tableId) {
-                        $("#id_table").append(`<option value="${tableId}">Table ${tableId}</option>`);
+                        tableField.append(`<option value="${tableId}">Table ${tableId}</option>`);
                     });
                 } else {
-                    $("#table-availability-message").text("No tables available for this time slot.");
-                    $("#id_table").prop("disabled", true); // Disable table selection
+                    tableAvailabilityMessage.text("No tables available for this time slot.");
+                    tableField.prop("disabled", true); // Disable table selection
                 }
             },
             error: function(error) {
@@ -26,13 +36,31 @@ $(document).ready(function() {
         });
     };
 
-    $('#id_date, #id_time_slot').on('change', () => {
-        const selectedDate = $('#id_date').val();
-        const selectedTimeSlot = $('#id_time_slot').val();
-        checkTableAvailability(selectedDate, selectedTimeSlot);
-    });
+    // Page-specific logic
+    if (window.location.pathname === reservationUrl) {
+        dateField.on('change', () => {
+            const selectedDate = dateField.val();
+            const selectedTimeSlot = timeSlotField.val();
+            checkTableAvailability(selectedDate, selectedTimeSlot);
+        });
 
-    const initialDate = $('#id_date').val();
-    const initialTimeSlot = $('#id_time_slot').val();
-    checkTableAvailability(initialDate, initialTimeSlot);
+        timeSlotField.on('change', () => {
+            const selectedDate = dateField.val();
+            const selectedTimeSlot = timeSlotField.val();
+            checkTableAvailability(selectedDate, selectedTimeSlot);
+        });
+
+        const initialDate = dateField.val();
+        const initialTimeSlot = timeSlotField.val();
+        checkTableAvailability(initialDate, initialTimeSlot);
+    }
+
+    // Additional page-specific scripts
+    if (window.location.pathname === '/edit_reservation/') {
+        // Your edit reservation-specific script here
+    }
+
+    if (window.location.pathname === '/remove_reservation/') {
+        // Your remove reservation-specific script here
+    }
 });
