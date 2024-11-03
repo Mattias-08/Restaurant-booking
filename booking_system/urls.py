@@ -19,7 +19,7 @@ from django.urls import path, include
 from .views import handler404
 
 urlpatterns = [
-    path('reservations/', include('reservations.urls')),
+    path('', include('reservations.urls')),
     path('admin/', admin.site.urls),
     path("accounts/", include("allauth.urls")),
 

@@ -18,13 +18,15 @@ def reservation_remove(request):
      return render(request, 'index.html') 
 
 class ReservationListView(ListView):
+    model = Reservation
     template_name = 'reservation_list.html'
+    context_object_name = 'reservations'  # This will be used in the template
 
     def get_queryset(self):
         if self.request.user.is_superuser:
             return Reservation.objects.all()
         else:
-            return Reservation.objects.filter(user=self.request.user)
+            return Reservation.objects.filter(customer=self.request.user)
 
 
 def home(request):
@@ -48,11 +50,10 @@ def make_reservation(request):
                 reservation.save()
                 return render(request, 'reservation_success.html', {'form': form_with_args, 'success_message': 'Reservation created successfully!'})
             except Exception as e:
-                # Log the error or handle it appropriately
-                error_message = 'An error occurred while saving the reservation. Please try again later.'
-                return render(request, 'booking.html', {'form': form, 'error_message': error_message})
+                # Log the error for debugging
+                logger.exception(f"Error saving reservation: {e}")  # Replace with your logging setup
+                return render(request, 'reservations/make_reservation.html', {'form': form, 'error_message': 'An error occurred while processing your reservation. Please try again later.'})
         else:
-            error_message = 'Reservation failed. Please check the form for errors.'
-            return render(request, 'booking.html', {'form': form, 'error_message': error_message})
+            return render(request, 'reservations/make_reservation.html', {'form': form, 'error_message': 'Reservation failed. Please check the form for errors.'})
     else:
-        return render(request, 'booking.html', {'form': form})
+        return render(request, 'reservations/make_reservation.html', {'form': form})
