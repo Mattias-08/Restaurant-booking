@@ -5,7 +5,7 @@
   <ul>
     {% for reservation in reservations %}
       <li>
-        Date: {{ reservation.date|date:"en_US.format" }}<br>
+        Date: {{ reservation.date|date:"Y-m-d" }}<br>
         Time: {{ reservation.get_time_slot_display }}<br>
         Table: {{ reservation.table }}
       </li>

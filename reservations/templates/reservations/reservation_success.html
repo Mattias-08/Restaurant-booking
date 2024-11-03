@@ -3,7 +3,7 @@
 {% block content %}
 <h1>Reservation Successful!</h1>
 <p>Your reservation has been created successfully!</p>
-<p>Date: {{ reservation.date|date:"en_US" }}</p>
+<p>Date: {{ reservation.date|date:"Y-m-d" }}</p>
 <p>Time: {{ reservation.get_time_slot_display }}</p>
 <p>Table: {{ reservation.table }}</p>
 <a href="{% url 'home' %}" class="btn btn-primary">Back to Homepage</a>

@@ -8,12 +8,15 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout
 from django.views.generic import ListView
 from django.http import JsonResponse
+from django.urls import reverse
 
 def reservation_edit(request):
      return render(request, 'index.html') 
 
-def reservation_success(request):
-     return render(request, 'index.html') 
+def reservation_success(request, reservation_id):
+    reservation = get_object_or_404(Reservation, id=reservation_id)
+    return render(request, 'reservations/reservation_success.html', {'reservation': reservation})
+    
 
 def reservation_remove(request):  
      return render(request, 'index.html') 
@@ -62,7 +65,8 @@ def make_reservation(request):
                 reservation = form_with_args.save(commit=False)
                 reservation.customer = request.user
                 reservation.save()
-                return render(request, 'reservation_success.html', {'reservation': reservation, 'success_message': 'Reservation created successfully!'})
+                # Pass reservation ID in the redirect
+                return redirect('reservation_success', reservation_id=reservation.id)
             except Exception as e:
                 print("Error saving reservation:", e)
                 return render(request, 'reservations/make_reservation.html', {'form': form_with_args, 'error_message': 'An error occurred while processing your reservation. Please try again later.'})
@@ -70,4 +74,4 @@ def make_reservation(request):
             print('Form errors:', form_with_args.errors)
             return render(request, 'reservations/make_reservation.html', {'form': form_with_args, 'error_message': 'Reservation failed. Please check the form for errors.'})
     else:
-        return render(request, 'reservations/make_reservation.html', {'form': form}) 
+        return render(request, 'reservations/make_reservation.html', {'form': form})
