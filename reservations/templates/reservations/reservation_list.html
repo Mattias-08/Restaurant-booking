@@ -1,26 +1,14 @@
 {% load static %}
 
-{% block content %}
-    <div class="container">
-        <h1>Your Reservations</h1>
-        <ul id="reservation-list" data-reservations='{{ reservations|json_script:"reservations" }}'>
-        {% if reservations %}
-            <ul>
-                {% for reservation in reservations %}
-                    <li>
-                        Date: {{ reservation.date|date:"Y-m-d" }}<br>
-                        Time: {{ reservation.get_time_slot_display }}<br>
-                        Table: {{ reservation.table }}
-                    </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>You don't have any reservations yet.</p>
-        {% endif %}
-    </div>
-{% endblock content %}
+<div class="container">
+    <h1>Your Reservations</h1>
+    <ul id="reservation-list"></ul>
+    {% if not reservations %}
+    <p id="no-reservations">You don't have any reservations yet.</p>
+    {% endif %}
+</div>
 
 {% block extras %}
-<script src="{% static 'js/base.js' %}"></script>
+<script src="{% static 'js/reservation_list.js' %}"></script>
 {% endblock extras %}
 
