@@ -39,27 +39,6 @@ def reservation_list_view(request):
 def home(request):
     return render(request, 'index.html')  # Render the homepage
 
-def get_available_tables(request):
-    if request.is_ajax() and request.method == 'GET':
-        selected_date = request.GET.get('date')
-        selected_time_slot = request.GET.get('time_slot')
-
-        if not selected_date or not selected_time_slot:
-            return HttpResponse("Missing date or time_slot parameter.", status=400)
-
-        try:
-            # Fetch tables that are not booked for the given date and time slot
-            available_tables = Table.objects.exclude(
-                reservation__date=selected_date,
-                reservation__time_slot=selected_time_slot
-            ).distinct()
-            table_ids = [table.id for table in available_tables]
-            return HttpResponse(','.join(map(str, table_ids)), status=200)
-        except Exception as e:
-            print("Error fetching available tables:", e)
-            return HttpResponse("Error fetching available tables.", status=500)
-    return HttpResponse("Invalid request.", status=400)
-
 
 def make_reservation(request):
     form = ReservationForm()
