@@ -6,8 +6,16 @@
         {% for reservation in reservations %}
         <li class="reservation-item">
             Date: {{ reservation.date|date:"Y-m-d" }}<br>
-            Time: {{ reservation.get_time_slot_display }}<br>
-            Table: {{ reservation.table }}
+            Time: {{ reservation.time_slot }}<br>
+            Table: {{ reservation.table }}<br>
+            <form method="post" action="{% url 'edit_reservation' reservation.id %}" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary btn-sm">Edit</button>
+            </form>
+            <form method="post" action="{% url 'reservation_remove' reservation.id %}" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to remove this reservation?');">Remove</button>
+            </form>
         </li>
         {% endfor %}
     </ul>
@@ -15,6 +23,7 @@
     <p id="no-reservations">You don't have any reservations yet.</p>
     {% endif %}
 </div>
+
 
 {% block extras %}
 <script src="{% static 'js/reservation_list.js' %}"></script>

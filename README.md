@@ -1,11 +1,7 @@
 # The Restaurant Reservation System
 
-![Responsive Mockup]
 
-## UX
-
-# The Restaurant Reservation System
-
+# ADDDDDD!!!
 ![Responsive Mockup]
 
 ## UX

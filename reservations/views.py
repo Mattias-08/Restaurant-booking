@@ -6,15 +6,28 @@ from django.contrib import messages
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 
-def reservation_edit(request):
-    return render(request, 'index.html')
+
+def edit_reservation(request, reservation_id):
+    reservation = get_object_or_404(Reservation, id=reservation_id)
+    if request.method == 'POST':
+        form = ReservationForm(request.POST, instance=reservation)
+        if form.is_valid():
+            form.save()
+            return redirect('reservation_list')
+    else:
+        form = ReservationForm(instance=reservation)
+    return render(request, 'reservations/edit_reservation.html', {'form': form})
+
 
 def reservation_success(request, reservation_id):
     reservation = get_object_or_404(Reservation, id=reservation_id)
     return render(request, 'reservations/reservation_success.html', {'reservation': reservation})
 
-def reservation_remove(request):
-    return render(request, 'index.html')
+def reservation_remove(request, reservation_id):
+    reservation = get_object_or_404(Reservation, id=reservation_id)
+    reservation.delete()
+    return redirect('reservation_list')
+
 
 def reservation_list_view(request):
     if request.user.is_authenticated:
