@@ -19,10 +19,12 @@ def reservation_success(request, reservation_id):
 def reservation_remove(request):  
     return render(request, 'index.html') 
 
-class ReservationListView(ListView):
-    model = Reservation
-    template_name = 'reservations/reservation_list.html'
-    context_object_name = 'reservations'
+def reservation_list_view(request):
+    if request.user.is_authenticated:
+        reservations = Reservation.objects.filter(customer=request.user)
+        return render(request, 'reservations/reservation_list.html', {'reservations': reservations})
+    else:
+        return redirect('account_login')
 
     def get_queryset(self):
         if self.request.user.is_superuser:

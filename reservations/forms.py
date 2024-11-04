@@ -6,9 +6,9 @@ class ReservationForm(forms.ModelForm):
         model = Reservation
         fields = ['date', 'time_slot', 'table']
         widgets = {
-            'date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control', 'placeholder': 'YYYY-MM-DD'}),
-            'time_slot': forms.Select(attrs={'class': 'form-control'}),
-            'table': forms.Select(attrs={'class': 'form-control'})
+            'date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control', 'id': 'id_date', 'placeholder': 'YYYY-MM-DD'}),
+            'time_slot': forms.Select(attrs={'class': 'form-control', 'id': 'id_time_slot'}),
+            'table': forms.Select(attrs={'class': 'form-control', 'id': 'id_table'})
         }
 
     def __init__(self, *args, **kwargs):

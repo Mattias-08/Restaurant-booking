@@ -2,7 +2,15 @@
 
 <div class="container">
     <h1>Your Reservations</h1>
-    <ul id="reservation-list"></ul>
+    <ul>
+        {% for reservation in reservations %}
+        <li>
+            Date: {{ reservation.date|date:"Y-m-d" }}<br>
+            Time: {{ reservation.get_time_slot_display }}<br>
+            Table: {{ reservation.table }}
+        </li>
+        {% endfor %}
+    </ul>
     {% if not reservations %}
     <p id="no-reservations">You don't have any reservations yet.</p>
     {% endif %}
