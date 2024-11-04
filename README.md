@@ -68,9 +68,12 @@ By keeping these functionalities separate, we ensure that each part of the appli
 ## **Models**
 
 
+
+# ADDDDDDDDDDDDD!
+
 ## Colour Palette
 
-![Color Palette]()
+![Color Palette](docs/images/colour_palette.png)
 * The color palette for this project was used for the calming and basic effect that will help the user to make good and confident bookings.
 
 
