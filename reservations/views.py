@@ -9,6 +9,14 @@ from crispy_forms.layout import Submit, Layout
 from django.views.generic import ListView
 from django.http import JsonResponse
 from django.urls import reverse
+from django.core import serializers
+
+def get_user_reservations(request):
+    if request.is_ajax() and request.user.is_authenticated:
+        reservations = Reservation.objects.filter(customer=request.user)
+        data = serializers.serialize('json', reservations)
+        return JsonResponse(data, safe=False)
+    return JsonResponse({"error": "Invalid request or user not authenticated."}, status=400)
 
 def reservation_edit(request):
      return render(request, 'index.html') 
@@ -23,8 +31,8 @@ def reservation_remove(request):
 
 class ReservationListView(ListView):
     model = Reservation
-    template_name = 'reservation_list.html'
-    context_object_name = 'reservations'  # This will be used in the template
+    template_name = 'reservations/reservation_list.html'
+    context_object_name = 'reservations'
 
     def get_queryset(self):
         if self.request.user.is_superuser:
