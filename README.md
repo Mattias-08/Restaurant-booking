@@ -10,6 +10,20 @@
 
 ## UX
 
+#### Strategy
+- Guided by core UX principles, the strategy for the Restaurant Reservation System was developed with a keen
+ focus on the target audience and the features that would be most beneficial to them.
+
+#### Target Audience
+
+- The target audience for the Restaurant Reservation System includes:
+
+- Young professionals and adults looking to easily book a table for a dining experience.
+
+- Families who want to reserve a spot for special occasions and weekend outings.
+
+- Anyone interested in a seamless, online restaurant reservation process.
+
 ### User Stories
 
 **General Users:**
