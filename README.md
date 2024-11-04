@@ -1,8 +1,18 @@
 # The Restaurant Reservation System
 
+![Responsive Mockup](/docs/images/Responsive_mockup.png)
 
-# ADDDDDD!!!
-![Responsive Mockup]
+This is a full-stack framework project built using Django, Python, HTML and CSS. The goal is to allow the user a good 
+interface where they can easily manage and make bookings. This website is made it persuite of learning django.
+
+**[Visit my website](https/)**  
+  #HEROI LÄÄNNK!
+SUPERUSER CREDENTIALS:
+username - testering
+password - testering
+
+For a realife website the password would obviously be different but it dosent contain any real life data, the
+credentials are needed to access some of the websites features.
 
 ## UX
 

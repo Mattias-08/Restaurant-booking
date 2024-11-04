@@ -198,3 +198,11 @@ body {
 .approval {
     color: rgb(222, 146, 168);
 }
+
+@media (max-width: 768px) {
+    .main-section {
+      background-size: contain;
+      background-position: top center;
+      padding-top: 60px; /* Adjust padding as needed */
+    }
+  }
