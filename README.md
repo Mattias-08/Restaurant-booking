@@ -64,13 +64,16 @@ The scope of this project is to develop a web application that allows users to m
 
 ## Structure
 
-The application consists of several Django apps, each responsible for a different aspect of the functionality. The main apps include:
+The Restaurant Reservation System is structured into several key Django apps, each responsible for a distinct area of functionality. This modular approach ensures that the codebase remains organized and easy to manage. Below are the main apps and their purposes:
 
-- `accounts`: Handles user authentication.
-- `reservations`: Manages reservations.
-- `tables`: Manages table data.
+- **accounts**: Handles user authentication, including sign-up, log-in, and log-out functionalities.
+- **reservations**: Manages all aspects of reservations, including making, viewing, editing, and deleting reservations.
+- **tables**: Manages the data related to the tables available at the restaurant, including the number of seats per table.
+
+By keeping these functionalities separate, we ensure that each part of the application is focused on a single responsibility, making the code easier to read, maintain, and expand in the future.
 
 
+## **Models**
 
 
 ## Colour Palette
@@ -78,14 +81,6 @@ The application consists of several Django apps, each responsible for a differen
 ![Color Palette]()
 * The color palette for this project was used for the calming and basic effect that will help the user to make good and confident bookings.
 
-
----
-
-# Flowchart
-
-The flowchart represents the logic of the application:
-
-  ![Flash Card Page](documentation/image_flowchart_three_in_row.png)
 
 ---
 
@@ -196,8 +191,6 @@ The site was deployed on Heroku and connected to GitHub for version control. Thi
 - [W3Schools](https://www.w3schools.com/) - Used to help understanding with certain features.
 
 - [Stack Overflow](https://stackoverflow.com/) - Used to inspire me when trying to picture how to implement certain features.
-
-- [Slack](https://app.slack.com/) - Used to collaborate with my course buddies and learn from colleagues who have encountered similar issues.
 
 - [ChatGPT](https://openai.com/gpt) - Used to generate all the example text on the site, also used to point me in the right direction from time to time. 
 
