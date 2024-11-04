@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
-from django.shortcuts import render, redirect
+from django.http import JsonResponse
+from django.core import serializers
 from .models import Reservation, Table
 from .forms import ReservationForm
 from django.contrib import messages 
@@ -7,27 +8,16 @@ from django.core.exceptions import ValidationError
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout
 from django.views.generic import ListView
-from django.http import JsonResponse
-from django.urls import reverse
-from django.core import serializers
-
-def get_user_reservations(request):
-    if request.is_ajax() and request.user.is_authenticated:
-        reservations = Reservation.objects.filter(customer=request.user)
-        data = serializers.serialize('json', reservations)
-        return JsonResponse(data, safe=False)
-    return JsonResponse({"error": "Invalid request or user not authenticated."}, status=400)
 
 def reservation_edit(request):
-     return render(request, 'index.html') 
+    return render(request, 'index.html') 
 
 def reservation_success(request, reservation_id):
     reservation = get_object_or_404(Reservation, id=reservation_id)
     return render(request, 'reservations/reservation_success.html', {'reservation': reservation})
     
-
 def reservation_remove(request):  
-     return render(request, 'index.html') 
+    return render(request, 'index.html') 
 
 class ReservationListView(ListView):
     model = Reservation
@@ -39,7 +29,6 @@ class ReservationListView(ListView):
             return Reservation.objects.all()
         else:
             return Reservation.objects.filter(customer=self.request.user)
-
 
 def home(request):
     return render(request, 'index.html')  # Render the homepage
@@ -56,6 +45,13 @@ def get_available_tables(request):
         ).distinct()
 
         return JsonResponse({'tables': list(available_tables.values_list('id', flat=True))})
+
+def get_user_reservations(request):
+    if request.is_ajax() and request.user.is_authenticated:
+        reservations = Reservation.objects.filter(customer=request.user)
+        data = serializers.serialize('json', reservations)
+        return JsonResponse(data, safe=False)
+    return JsonResponse({"error": "Invalid request or user not authenticated."}, status=400)
 
 def make_reservation(request):
     form = ReservationForm()
