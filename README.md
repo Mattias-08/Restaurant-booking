@@ -45,22 +45,14 @@ The scope of this project is to develop a web application that allows users to m
 
 ## Database Schema
 
-### Models
+I created a entity relationship diagram to help me see how the models would link together. I also included the views/urls since they are such an important part of
+the structure and i would not be able to see the full project before with without also having them properly mapped out.
 
-**Table**
+I also hadn't planned on using the Board Games Geek API initially so the board game diagram doesn't show the bgg_id field.
 
-| Field   | Type                   | Description        |
-|---------|------------------------|--------------------|
-| seats   | PositiveSmallIntegerField | Number of seats     |
+The entity relationship diagrams were created using [Lucidchart](https://www.lucidchart.com/).
 
-**Reservation**
-
-| Field       | Type                   | Description                    |
-|-------------|------------------------|--------------------------------|
-| customer    | ForeignKey(User)       | User who made the reservation  |
-| date        | DateField              | Reservation date               |
-| time_slot   | CharField              | Time slot for the reservation  |
-| table       | ForeignKey(Table)      | Table reserved                 |
+![Entity relationship diagrams](/docs/images/erdiagrams.jpeg.png)
 
 ## Structure
 
