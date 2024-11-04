@@ -1,40 +1,30 @@
-$(document).ready(function() {
-    const getReservationsUrl = "/api/reservations/"; // API endpoint for fetching reservations
+document.addEventListener('DOMContentLoaded', function() {
+    const getReservationsUrl = "/api/reservations/";
 
-    // Fetch reservations
     const fetchReservations = () => {
-        console.log("Fetching reservations...");
-        $.ajax({
-            url: getReservationsUrl,
-            type: "GET",
-            success: function(response) {
-                console.log("Reservations fetched:", response);
-                const reservationList = $('#reservation-list');
-                reservationList.empty(); // Clear existing list
-                const reservations = JSON.parse(response);
-
-                if (reservations.length > 0) {
-                    reservations.forEach(reservation => {
-                        const data = reservation.fields;
-                        reservationList.append(`
+        fetch(getReservationsUrl)
+            .then(response => response.json())
+            .then(data => {
+                const reservationList = document.getElementById('reservation-list');
+                reservationList.innerHTML = ''; // Clear existing list
+                if (data.length > 0) {
+                    data.forEach(reservation => {
+                        const { date, time_slot, table } = reservation.fields;
+                        const listItem = `
                             <li>
-                                Date: ${data.date}<br>
-                                Time: ${data.time_slot}<br>
-                                Table: ${data.table}
-                                <button class="edit-reservation" data-id="${reservation.pk}">Edit</button>
-                                <button class="delete-reservation" data-id="${reservation.pk}">Delete</button>
+                                Date: ${date}<br>
+                                Time: ${time_slot}<br>
+                                Table: ${table}
                             </li>
-                        `);
+                        `;
+                        reservationList.innerHTML += listItem;
                     });
-                    $('#no-reservations').hide();
+                    document.getElementById('no-reservations').style.display = 'none';
                 } else {
-                    $('#no-reservations').show();
+                    document.getElementById('no-reservations').style.display = 'block';
                 }
-            },
-            error: function(error) {
-                console.error("Error fetching reservations:", error);
-            }
-        });
+            })
+            .catch(error => console.error('Error fetching reservations:', error));
     };
 
     // Call fetchReservations on page load

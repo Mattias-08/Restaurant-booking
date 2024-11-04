@@ -15,8 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
                                 Date: ${date}<br>
                                 Time: ${time_slot}<br>
                                 Table: ${table}
-                                <button class="edit-reservation" data-id="${reservation.pk}">Edit</button>
-                                <button class="delete-reservation" data-id="${reservation.pk}">Delete</button>
                             </li>
                         `;
                         reservationList.innerHTML += listItem;
@@ -26,9 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     document.getElementById('no-reservations').style.display = 'block';
                 }
             })
-            .catch(error => {
-                console.error('Error fetching reservations:', error);
-            });
+            .catch(error => console.error('Error fetching reservations:', error));
     };
 
     // Call fetchReservations on page load
