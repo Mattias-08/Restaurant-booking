@@ -2,9 +2,9 @@
 
 <div class="container">
     <h1>Your Reservations</h1>
-    <ul>
+    <ul id="reservation-list">
         {% for reservation in reservations %}
-        <li>
+        <li class="reservation-item">
             Date: {{ reservation.date|date:"Y-m-d" }}<br>
             Time: {{ reservation.get_time_slot_display }}<br>
             Table: {{ reservation.table }}

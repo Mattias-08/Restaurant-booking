@@ -1,23 +1,20 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
-from django.http import JsonResponse
-from django.core import serializers
+from django.http import HttpResponse
 from .models import Reservation, Table
 from .forms import ReservationForm
-from django.contrib import messages 
-from django.core.exceptions import ValidationError
+from django.contrib import messages
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit, Layout
-from django.views.generic import ListView
+from crispy_forms.layout import Submit
 
 def reservation_edit(request):
-    return render(request, 'index.html') 
+    return render(request, 'index.html')
 
 def reservation_success(request, reservation_id):
     reservation = get_object_or_404(Reservation, id=reservation_id)
     return render(request, 'reservations/reservation_success.html', {'reservation': reservation})
-    
-def reservation_remove(request):  
-    return render(request, 'index.html') 
+
+def reservation_remove(request):
+    return render(request, 'index.html')
 
 def reservation_list_view(request):
     if request.user.is_authenticated:
@@ -25,12 +22,6 @@ def reservation_list_view(request):
         return render(request, 'reservations/reservation_list.html', {'reservations': reservations})
     else:
         return redirect('account_login')
-
-    def get_queryset(self):
-        if self.request.user.is_superuser:
-            return Reservation.objects.all()
-        else:
-            return Reservation.objects.filter(customer=self.request.user)
 
 def home(request):
     return render(request, 'index.html')  # Render the homepage
@@ -40,20 +31,21 @@ def get_available_tables(request):
         selected_date = request.GET.get('date')
         selected_time_slot = request.GET.get('time_slot')
 
-        available_tables = Table.objects.filter(
-            reservation__date=selected_date,
-            reservation__time_slot=selected_time_slot,
-            reservation__is_table_available=True
-        ).distinct()
+        if not selected_date or not selected_time_slot:
+            return HttpResponse("Missing date or time_slot parameter.", status=400)
 
-        return JsonResponse({'tables': list(available_tables.values_list('id', flat=True))})
-
-def get_user_reservations(request):
-    if request.is_ajax() and request.user.is_authenticated:
-        reservations = Reservation.objects.filter(customer=request.user)
-        data = serializers.serialize('json', reservations)
-        return JsonResponse(data, safe=False)
-    return JsonResponse({"error": "Invalid request or user not authenticated."}, status=400)
+        try:
+            available_tables = Table.objects.filter(
+                reservation__date=selected_date,
+                reservation__time_slot=selected_time_slot,
+                reservation__is_table_available=True
+            ).distinct()
+            table_ids = [table.id for table in available_tables]
+            return HttpResponse(','.join(map(str, table_ids)))
+        except Exception as e:
+            print("Error fetching available tables:", e)
+            return HttpResponse("Error fetching available tables.", status=500)
+    return HttpResponse("Invalid request.", status=400)
 
 def make_reservation(request):
     form = ReservationForm()

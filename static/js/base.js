@@ -18,12 +18,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (date && timeSlot) {
                 fetch(`${getTablesUrl}?date=${date}&time_slot=${timeSlot}`)
-                    .then(response => response.json())
-                    .then(data => {
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.text();
+                    })
+                    .then(html => {
                         tableField.innerHTML = ''; // Clear existing options
                         tableField.innerHTML = '<option disabled selected value="">-- Select Table --</option>';
-                        if (data.tables.length > 0) {
-                            data.tables.forEach(tableId => {
+                        const tables = JSON.parse(html).tables;
+                        if (tables.length > 0) {
+                            tables.forEach(tableId => {
                                 tableField.innerHTML += `<option value="${tableId}">Table ${tableId}</option>`;
                             });
                             tableField.disabled = false;

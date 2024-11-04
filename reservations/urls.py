@@ -10,5 +10,4 @@ urlpatterns = [
     path('reservation_remove/<int:reservation_id>/', views.reservation_remove, name='reservation_remove'),
     path('reservation_edit/<int:reservation_id>/', views.reservation_edit, name='reservation_edit'),
     path('get_available_tables/', views.get_available_tables, name='get_available_tables'),
-    path('api/reservations/', views.get_user_reservations, name='get_user_reservations'),   
 ]
