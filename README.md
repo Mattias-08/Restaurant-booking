@@ -4,19 +4,88 @@
 
 ## UX
 
+# The Restaurant Reservation System
+
+![Responsive Mockup]
+
+## UX
+
 ### User Stories
 
-- As a user, I want to be able to create an account so that I can manage my reservations.
-- As a user, I want to log in to my account to access my existing reservations.
+**General Users:**
+- As a user, I want to create an account to manage my reservations.
+- As a user, I want to log in to my account to access and manage my reservations.
 - As a user, I want to make a new reservation to book a table at the restaurant.
+- As a user, I want to view my reservations to see my upcoming and past bookings.
 - As a user, I want to edit my existing reservations if my plans change.
 - As a user, I want to delete reservations that I no longer need.
+- As a user, I want an easy-to-navigate website to find information quickly.
 
-### Scope
+**Admin Users:**
+- As an admin, I want to view all reservations to manage the restaurant’s bookings.
+- As an admin, I want to edit any reservation to correct or update booking details.
+- As an admin, I want to delete reservations to manage the restaurant’s schedule.
+- As an admin, I want to log in to an admin panel to access reservation management features.
 
-The scope of this project is to develop a web application that allows users to manage their restaurant reservations efficiently. The app will provide user authentication, reservation management, and a responsive user interface.
+### Navigation
+- As a user, I want to easly navigate to Reservations, and log out
+
+### Login/Register
+- As a user,I want to log into my account using my username and password.
+- As a user, I want to create an account by providing a username, email, and password.
+- As a user, I want to securely delete my account and lose my bookings.
 
 ## Site Features
+ 
+# AADDD images  
+
+### Navigation Bar
+- A responsive navigation bar with links to Home, Reservations, Login, and Signup pages.
+- Includes a logo and toggles for mobile responsiveness.
+
+### Home Page
+- **Welcome Section**: An introduction to the restaurant.
+- **Call-to-Action Button**: Prominently displayed button for making a reservation.
+- **Responsive Design**: Ensures the homepage looks great on all devices.
+
+### Reservation Features
+
+#### Make a Reservation
+- **Form Fields**: Date, time slot, and table selection.
+- **Submit Button**: To create a new reservation.
+- **CSRF Protection**: Secure form submissions.
+
+#### View Reservations
+- **Reservation List**: Displays all current reservations.
+- **Edit and Delete Buttons**: Inline buttons to edit or delete each reservation.
+  
+#### Edit Reservation
+- **Pre-Populated Form**: Form fields filled with current reservation details for easy updates.
+- **Save Button**: To save changes to the reservation.
+
+#### Delete Reservation
+- **Confirmation Message**: Ensures users confirm before deleting a reservation.
+- **Confirm and Cancel Buttons**: For user control over the deletion action.
+
+### User Authentication
+
+#### Signup Form
+- **Input Fields**: Username, email, and password.
+- **Submit Button**: To create the account.
+
+#### Login Form
+- **Input Fields**: Username and password.
+- **Submit Button**: For user login.
+
+#### Logout Button
+- Allows users to securely log out of their account.
+
+### Footer
+- **Social Media Links**: Icons linking to social media profiles.
+- **Attribution**: Acknowledgements for the favicon and other resources.
+
+
+
 
 ### Existing Features
 
@@ -34,6 +103,8 @@ The scope of this project is to develop a web application that allows users to m
 - Integration with a payment gateway for reservation deposits
 - Advanced search and filtering options for reservations
 - Mobile app version for easier access
+- Proper functionality to prevent the tables to show booked tables,
+ I ran out of time and it was hard to implement
 
 ### Wireframes
 
