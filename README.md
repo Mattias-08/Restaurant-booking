@@ -189,36 +189,22 @@ The site was deployed on Heroku and connected to GitHub for version control. Thi
 
 ---
 
+# **Credits**
 
-## Bugs
+## **Tech Support**
 
-All the bugs are resolved and the program runs well
+- [W3Schools](https://www.w3schools.com/) - Used to help understanding with certain features.
 
-## Testing
+- [Stack Overflow](https://stackoverflow.com/) - Used to inspire me when trying to picture how to implement certain features.
 
-## Compatibility
+- [Slack](https://app.slack.com/) - Used to collaborate with my course buddies and learn from colleagues who have encountered similar issues.
 
-In order to confirm the correct functionality, responsiveness, and appearance:
+- [ChatGPT](https://openai.com/gpt) - Used to generate all the example text on the site, also used to point me in the right direction from time to time. 
 
-+ The website was tested on the following browsers: Chrome, Firefox, Brave.
-
-No issues was found after the manual testing.
-
-## Manual testing
-
-Manual testing have been done on all the features personally and by a friend to make that there are no interactice bugs.
-
-The testing has also been done on a tablet and phone to ensure that the website works and looks like it should on all normal screensizes.
+- [Code Institute](https://codeinstitute.net/) - I think therefore I blog walkthrough project inspired the events page on my site.
 
 ---
-## Validator testing
 
-[online validation tool](http://pep8online.com/) was used to ensure didnt have any issues related to the styling or syntax.
-
-The testing was done manually by coping in the code ![Python Validator](documentation/python%20linter.png)
-
-   
----
 ## Acknowledgements
 
 [Juliia Konn](https://github.com/IuliiaKonovalova)
