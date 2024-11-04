@@ -1,84 +1,77 @@
-
-# The Restuarant
+# The Restaurant Reservation System
 
 ![Responsive Mockup]
 
-*The link to [Three in a row](https://three-in-a-row-21c4d9510ed4.herokuapp.com/)*
+## UX
 
-Three in a row is a python terminal project that is made give the user 
-a fun game to kill time. The rules are simple and the game is fast passed. 
+### User Stories
 
----
+- As a user, I want to be able to create an account so that I can manage my reservations.
+- As a user, I want to log in to my account to access my existing reservations.
+- As a user, I want to make a new reservation to book a table at the restaurant.
+- As a user, I want to edit my existing reservations if my plans change.
+- As a user, I want to delete reservations that I no longer need.
 
-# How to play:
+### Scope
 
--Click this *[link](https://three-in-a-row-21c4d9510ed4.herokuapp.com/)* or copy this text: `https://three-in-a-row-21c4d9510ed4.herokuapp.com/` and paste it in your browser's address bar.
-- The page loads as soon as you start the program.
-- The rules are displayed and you can start inputing your commands according
-to the limitations.
--Keep placing your pieces on the board untill a winner is declared.
+The scope of this project is to develop a web application that allows users to manage their restaurant reservations efficiently. The app will provide user authentication, reservation management, and a responsive user interface.
+
+## Site Features
+
+### Existing Features
+
+- User authentication (sign up, log in, log out)
+- Make new reservations
+- View list of reservations
+- Edit existing reservations
+- Delete reservations
+- Responsive design with Bootstrap
+- CSRF protection
+
+### Future Features
+
+- Email notifications for reservation confirmations and reminders
+- Integration with a payment gateway for reservation deposits
+- Advanced search and filtering options for reservations
+- Mobile app version for easier access
+
+### Wireframes
+
+- Home Page
+- Reservation Form
+- Reservation List
+- Edit Reservation Form
+- Delete Confirmation
+
+## Database Schema
+
+### Models
+
+**Table**
+
+| Field   | Type                   | Description        |
+|---------|------------------------|--------------------|
+| seats   | PositiveSmallIntegerField | Number of seats     |
+
+**Reservation**
+
+| Field       | Type                   | Description                    |
+|-------------|------------------------|--------------------------------|
+| customer    | ForeignKey(User)       | User who made the reservation  |
+| date        | DateField              | Reservation date               |
+| time_slot   | CharField              | Time slot for the reservation  |
+| table       | ForeignKey(Table)      | Table reserved                 |
+
+## Structure
+
+The application consists of several Django apps, each responsible for a different aspect of the functionality. The main apps include:
+
+- `accounts`: Handles user authentication.
+- `reservations`: Manages reservations.
+- `tables`: Manages table data.
 
 
----
 
-# Features
-
-- **Loading the page**
-
-  The terminal gets loaded and the game is displayed with rules and board, waiting for the users input
-
-  ![loading Program](documentation/Start_game.png)
-
-  - **Playing the game**
-
-  The user gives the input and the board gets updated 
-  
-  After that the computers move gets displayed by updating the board, and the request for user input gets repeated
-
-  ![loading Program](documentation/Playing.png)
-  
-
-- **End of the game**
-
-  When all the boards are filled or a player gets three in a row the winner gets declared.
-
-  Then the user gets prompted to input y or n depending on if he wants to play another game or not.
-
-  Depending on the answer the game restarts if y, if the input message is n then a thank you message is displayed and
-
-  the program ends.
-
-  ![loading Program](documentation/Game_end.png)
-  ![loading Program](documentation/End_terminal.png)
-  
-
-  - **Error handling**
-
-  There is some errorhandling for incorrect inputs. Examples of this will be displayed below
-
-  ![loading Program](documentation/Invalid_input.png)
-
-## User Stories
-
-All of the user stories are meet and here they are sorted 
-
-### Must
-
-- User Story 1: As a customer, I want to view available booking times for a specific date so that I can choose a suitable time for my reservation.
-- User Story 4: As a customer, I want to be able to cancel or modify my booking up to a certain point so that I can change my plans if necessary.
-- User Story 6: As a customer i want to be able to create and remove my user so i have controll over my personal details
-- User Story 7: As a system, I should be able to manage booking capacity and automatically adjust available times based on bookings.
-
-### Should
-
-- User Story 3: As a customer, I want to receive a booking confirmation with details of my reservation so that I have a record of it.
-- User Story 5: As a system, I should be able to prevent double bookings for the same time slot to ensure availability.
-### Could
-
-- User Story 2: As a customer, I want to be able to specify the number of people in my party when making a booking so that the restaurant can prepare accordingly.
-- User Story 8: As a user Admin i want to be able to view all current bookings so that the kitchen staff can prepare better for each day
-
----
 
 ## Colour Palette
 
