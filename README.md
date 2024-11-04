@@ -37,11 +37,32 @@ The scope of this project is to develop a web application that allows users to m
 
 ### Wireframes
 
-- Home Page
-- Reservation Form
-- Reservation List
-- Edit Reservation Form
-- Delete Confirmation
+Wireframes were created along with the entity relationship diagrams. The structure remains pretty similar with some parts moving around.
+
+Please note, there is no wireframe for log out since its basically the same as log in and i did not consider it when making the wireframes.
+
+All wireframes were created using [Balsamiq](https://balsamiq.com/).
+
+---
+
+![Welcome page wireframe](/docs/images/Welcomepage_wireframe.png)
+#### Welcome page
+
+---
+
+![reservation wireframe](/docs/images/Makereservation_wireframe.png)
+#### Make Reservation wireframe
+
+---
+
+![sign up wireframe](/docs/images/Signup_wireframe.png)
+#### The sign up page
+
+---
+
+![log in wireframe](/docs/images/Signin_wireframe.png)
+#### The log in page
+
 
 ## Database Schema
 
