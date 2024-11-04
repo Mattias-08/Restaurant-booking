@@ -6,7 +6,7 @@ This is a full-stack framework project built using Django, Python, HTML and CSS.
 interface where they can easily manage and make bookings. This website is made it persuite of learning django.
 
 **[Visit my website](https/)**  
-  #HEROI LÄÄNNK!
+  # HEROI LÄÄNNK!
 SUPERUSER CREDENTIALS:
 username - testering
 password - testering
@@ -57,53 +57,35 @@ credentials are needed to access some of the websites features.
 
 ## Site Features
  
-# AADDD images  
-
 ### Navigation Bar
 - A responsive navigation bar with links to Home, Reservations, Login, and Signup pages.
-- Includes a logo and toggles for mobile responsiveness.
+![Navbar image](/docs/images/navbar.png)
+### Footer
+- **Social Media Links**: Icons linking to social media profiles.
+![Footer](/docs/images/footer.png)
 
 ### Home Page
 - **Welcome Section**: An introduction to the restaurant.
-- **Call-to-Action Button**: Prominently displayed button for making a reservation.
 - **Responsive Design**: Ensures the homepage looks great on all devices.
+![Home image](/docs/images/homepage_features.png)
 
 ### Reservation Features
 
 #### Make a Reservation
-- **Form Fields**: Date, time slot, and table selection.
-- **Submit Button**: To create a new reservation.
-- **CSRF Protection**: Secure form submissions.
-
-#### View Reservations
-- **Reservation List**: Displays all current reservations.
-- **Edit and Delete Buttons**: Inline buttons to edit or delete each reservation.
-  
-#### Edit Reservation
-- **Pre-Populated Form**: Form fields filled with current reservation details for easy updates.
-- **Save Button**: To save changes to the reservation.
-
-#### Delete Reservation
-- **Confirmation Message**: Ensures users confirm before deleting a reservation.
-- **Confirm and Cancel Buttons**: For user control over the deletion action.
-
-### User Authentication
+Users can make reservations by selecting a date, time, and party size. Unregistered users will be redirected to log in or register. Admins can manage reservations and table availability. The system prevents double-booking and ensures table capacity is not exceeded.
+![Reservation image](/docs/images/makeres_feat.png)
 
 #### Signup Form
 - **Input Fields**: Username, email, and password.
 - **Submit Button**: To create the account.
-
+![Signup image](/docs/images/signup_feat.png)
 #### Login Form
 - **Input Fields**: Username and password.
 - **Submit Button**: For user login.
-
+![Log in image](/docs/images/singin_feat.png)
 #### Logout Button
 - Allows users to securely log out of their account.
-
-### Footer
-- **Social Media Links**: Icons linking to social media profiles.
-- **Attribution**: Acknowledgements for the favicon and other resources.
-
+![Log out image](/docs/images/logout_feat.png)
 
 
 
@@ -123,6 +105,7 @@ credentials are needed to access some of the websites features.
 - Integration with a payment gateway for reservation deposits
 - Advanced search and filtering options for reservations
 - Mobile app version for easier access
+- Implementing a proper 404 page.
 - Proper functionality to prevent the tables to show booked tables,
  I ran out of time and it was hard to implement
 
@@ -157,10 +140,9 @@ All wireframes were created using [Balsamiq](https://balsamiq.com/).
 
 ## Database Schema
 
-I created a entity relationship diagram to help me see how the models would link together. I also included the views/urls since they are such an important part of
-the structure and i would not be able to see the full project before with without also having them properly mapped out.
-
-I also hadn't planned on using the Board Games Geek API initially so the board game diagram doesn't show the bgg_id field.
+To gain a comprehensive understanding of my project's structure, I created an ER diagram to illustrate the relationships
+between my models. Additionally, 
+I mapped out the corresponding views and URLs to visualize the complete flow of user interactions
 
 The entity relationship diagrams were created using [Lucidchart](https://www.lucidchart.com/).
 
@@ -168,13 +150,16 @@ The entity relationship diagrams were created using [Lucidchart](https://www.luc
 
 ## Structure
 
-The Restaurant Reservation System is structured into several key Django apps, each responsible for a distinct area of functionality. This modular approach ensures that the codebase remains organized and easy to manage. Below are the main apps and their purposes:
+The Restaurant Reservation System is structured into several key Django apps,
+each responsible for a distinct area of functionality. 
+This modular approach ensures that the codebase remains organized and easy to manage. Below are the main apps and their purposes:
 
 - **accounts**: Handles user authentication, including sign-up, log-in, and log-out functionalities.
 - **reservations**: Manages all aspects of reservations, including making, viewing, editing, and deleting reservations.
 - **tables**: Manages the data related to the tables available at the restaurant, including the number of seats per table.
 
-By keeping these functionalities separate, we ensure that each part of the application is focused on a single responsibility, making the code easier to read, maintain, and expand in the future.
+By keeping these functionalities separate, we ensure that each part of the application is focused on a single responsibility,
+ making the code easier to read, maintain, and expand in the future.
 
 
 ## **Models**
