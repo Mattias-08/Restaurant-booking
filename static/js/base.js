@@ -3,49 +3,40 @@ document.addEventListener('DOMContentLoaded', function() {
     const timeSlotField = document.getElementById('id_time_slot');
     const tableField = document.getElementById('id_table');
     const tableAvailabilityMessage = document.getElementById('table-availability-message');
+    const getTablesUrl = "/get_available_tables/";
 
-    console.log('dateField:', dateField);
-    console.log('timeSlotField:', timeSlotField);
-    console.log('tableField:', tableField);
-    console.log('tableAvailabilityMessage:', tableAvailabilityMessage);
+    // Clear table dropdown on load
+    tableField.innerHTML = '<option disabled selected value="">-- Select Table --</option>';
 
-    if (dateField && timeSlotField && tableField && tableAvailabilityMessage) {
-        const getTablesUrl = "/get_available_tables/";
+    const checkTableAvailability = () => {
+        const date = dateField.value;
+        const timeSlot = timeSlotField.value;
 
-        const checkTableAvailability = () => {
-            const date = dateField.value;
-            const timeSlot = timeSlotField.value;
+        if (date && timeSlot) {
+            const url = `${getTablesUrl}?date=${date}&time_slot=${timeSlot}`;
+            console.log('Fetching URL:', url); // Log the URL for debugging
 
-            if (date && timeSlot) {
-                fetch(`${getTablesUrl}?date=${date}&time_slot=${timeSlot}`)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                        return response.text();
-                    })
-                    .then(html => {
-                        tableField.innerHTML = ''; // Clear existing options
-                        tableField.innerHTML = '<option disabled selected value="">-- Select Table --</option>';
-                        const tables = JSON.parse(html).tables;
-                        if (tables.length > 0) {
-                            tables.forEach(tableId => {
-                                tableField.innerHTML += `<option value="${tableId}">Table ${tableId}</option>`;
-                            });
-                            tableField.disabled = false;
-                            tableAvailabilityMessage.textContent = '';
-                        } else {
-                            tableAvailabilityMessage.textContent = "No tables available for this time slot.";
-                            tableField.disabled = true; // Disable table selection
-                        }
-                    })
-                    .catch(error => console.error('Error checking table availability:', error));
-            }
-        };
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    console.log('Fetch data:', data); // Log the data for debugging
+                    const tableIds = data.split(',');
+                    tableField.innerHTML = '<option disabled selected value="">-- Select Table --</option>';
+                    if (tableIds[0]) {
+                        tableIds.forEach(tableId => {
+                            tableField.innerHTML += `<option value="${tableId}">Table ${tableId}</option>`;
+                        });
+                        tableField.disabled = false;
+                        tableAvailabilityMessage.textContent = '';
+                    } else {
+                        tableAvailabilityMessage.textContent = "No tables available for this time slot.";
+                        tableField.disabled = true;
+                    }
+                })
+                .catch(error => console.error('Error checking table availability:', error));
+        }
+    };
 
-        dateField.addEventListener('change', checkTableAvailability);
-        timeSlotField.addEventListener('change', checkTableAvailability);
-    } else {
-        console.error("One or more form elements are missing.");
-    }
+    dateField.addEventListener('change', checkTableAvailability);
+    timeSlotField.addEventListener('change', checkTableAvailability);
 });
