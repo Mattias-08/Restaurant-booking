@@ -5,8 +5,8 @@
 This is a full-stack framework project built using Django, Python, HTML and CSS. The goal is to allow the user a good 
 interface where they can easily manage and make bookings. This website is made it persuite of learning django.
 
-**[Visit my website](https/)**  
-  # HEROI LÄÄNNK!
+[Visit my website](https://restaurant-booking-systems-c7e901b3d3c6.herokuapp.com/)
+
 SUPERUSER CREDENTIALS:
 username - testering
 password - testering
