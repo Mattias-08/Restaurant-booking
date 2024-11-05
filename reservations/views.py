@@ -31,7 +31,7 @@ def edit_reservation(request, reservation_id):
         {
             'form': form,
             'reservations': reservations,
-            'reservation_id': reservation.id  # Pass the reservation ID to the template
+            'reservation_id': reservation.id
         }
     )
 
@@ -148,7 +148,7 @@ def make_reservation(request):
         - Instantiate a blank ReservationForm and a FormHelper for
           styling.
         - Retrieve the authenticated user's reservations.
-        - Render the form and reservations for the user to fill out and 
+        - Render the form and reservations for the user to fill out and
           view.
 
     - If the request method is POST:
@@ -158,7 +158,7 @@ def make_reservation(request):
               immediately.
             - Assign the current user as the customer of the reservation.
             - Save the reservation to the database.
-            - Redirect to the reservation success page, passing the 
+            - Redirect to the reservation success page, passing the
               reservation ID.
             - If an error occurs while saving, render the form again
               with an error message.
@@ -171,8 +171,10 @@ def make_reservation(request):
     if request.method == 'POST':
         reservation_id = request.POST.get('reservation_id')
         if reservation_id:
-            reservation = get_object_or_404(Reservation, id=reservation_id)
-            form = ReservationForm(request.POST, instance=reservation)
+            reservation = get_object_or_404(
+                Reservation, id=reservation_id)
+            form = ReservationForm(
+                request.POST, instance=reservation)
         else:
             form = ReservationForm(request.POST)
 
@@ -181,10 +183,15 @@ def make_reservation(request):
                 reservation = form.save(commit=False)
                 reservation.customer = request.user
                 reservation.save()
-                return redirect('reservation_success', reservation_id=reservation.id)
+                return redirect(
+                    'reservation_success',
+                    reservation_id=reservation.id
+                )
             except Exception as e:
                 print("Error saving reservation:", e)
-                reservations = Reservation.objects.filter(customer=request.user)
+                reservations = Reservation.objects.filter(
+                    customer=request.user
+                )
                 return render(
                     request,
                     'reservations/make_reservation.html',
@@ -198,7 +205,9 @@ def make_reservation(request):
                 )
         else:
             print('Form errors:', form.errors)
-            reservations = Reservation.objects.filter(customer=request.user)
+            reservations = Reservation.objects.filter(
+                customer=request.user
+            )
             return render(
                 request,
                 'reservations/make_reservation.html',
