@@ -45,11 +45,36 @@ After i adjusted html none of the pages had any bugs as shown below:
 I used the [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) to validate my custom CSS file. I did not test bootstrap CSS.
 The result came back with no errors found as can be seen here.
 
-![CSS validation pass](/docs/testing/validation/CSS_validation.png)
+![CSS validation pass](/docs/testing/css_validator.png)
 
 ---
 
 ### Python Validation
+
+# AAAAAADDD
+
+### Lighthouse Scores
+
+Lighthouse testing was carried out in Google chrome, all the pages had similar scores of slightly under 90 performance
+and around 78 on best practices which propably is linked to not implementing my own js. I apologize for it being in 
+Swedish but its just wont change its language but the content is pretty clear anyway
+
+---
+
+![lighthouse score for the landing page](/docs/testing/ligtht_home.png)  
+*The Home Page*
+
+---
+
+![lighthouse score for the reservaton page](/docs/testing/light_reserv.png)  
+*The Reservation page*
+
+---
+
+![lighthouse score for log out page](/docs/testing/light_logout.png)  
+*The log out page*
+
+---
 
 
 
