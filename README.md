@@ -109,8 +109,7 @@ Users can make reservations by selecting a date, time, and party size. Unregiste
 - Advanced search and filtering options for reservations
 - Mobile app version for easier access
 - Implementing a proper 404 page.
-- Proper functionality to prevent the tables to show booked tables,
- I ran out of time and it was hard to implement
+- Proper functionality to not load allready booked tables.
 
 ### Wireframes
 
