@@ -10,7 +10,6 @@ Return back to the [README.md](README.md) file.
   - [Validation](#validation)
     - [HTML Validation](#html-validation)
     - [CSS Validation](#css-validation)
-    - [JavaScript Validation](#javascript-validation)
     - [Python Validation](#python-validation)
     - [Lighthouse Scores](#lighthouse-scores)
   - [Manual Testing](#manual-testing)
@@ -121,7 +120,8 @@ User stories can be reviewed in the Restaurant Booking [GitHub project board]. U
 | #16 View landing page       | ✔️ Yes                       | Yes    | No issues    | Pass      |    -    |
 | #13 View games library         | ✔️ Yes                       | Yes    | No issues    | Pass      |    -    |
 | -    |         Epic: Log in / Register              |  -  |  -  |   -  | -   |
-| #4 Register account      | ✔️ Yes                      
+| #4 Register account      | ✔️ Yes                       | Yes    | No issues    | Pass      |    -    |
+             
 
 ---
 
