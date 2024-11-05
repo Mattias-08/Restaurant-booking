@@ -15,12 +15,13 @@ TIME_PERIODS = (
     (5, 22),
 )
 
+
 class Table(models.Model):
     """
     Model representing a table in the restaurant.
 
     **Fields**
-    
+
     ``seats``
         Number of seats at the table. Must be a positive integer.
     """
@@ -29,16 +30,18 @@ class Table(models.Model):
     def __str__(self):
         return f"Table with {self.seats} seats"
 
+
 class Reservation(models.Model):
     """
     Model representing a reservation made by a user.
 
     **Fields**
-    
+
     ``customer``
         ForeignKey to the User who made the reservation.
     ``time_slot``
-        Integer representing the time slot of the reservation. Choices are defined in TIME_PERIODS.
+        Integer representing the time slot of the reservation. Choices
+        are defined in TIME_PERIODS.
     ``table``
         ForeignKey to the Table being reserved.
     ``date``
@@ -63,16 +66,18 @@ class Reservation(models.Model):
         Meta class to define unique constraints and indexes.
 
         **unique_together**
-            Ensures that each table can only be reserved once per date and time_slot.
+            Ensures that each table can only be reserved once per date
+            and time_slot.
         **indexes**
             Adds an index on date and time_slot for faster queries.
         """
         unique_together = ['date', 'time_slot', 'table']
-        indexes = [ models.Index(fields=['date', 'time_slot']), ]
+        indexes = [models.Index(fields=['date', 'time_slot']), ]
 
     def is_table_available(self):
         """
-        Check if the selected table is available for the given date and time slot.
+        Check if the selected table is available for the given date and
+        time slot.
 
         **Returns**
 
@@ -92,16 +97,19 @@ class Reservation(models.Model):
         **Raises**
 
         ``ValidationError``
-            If the reservation date is in the past or if the selected table is not available.
+            If the reservation date is in the past or if the selected
+            table is not available.
         """
         # Validate reservation date
         if self.date is not None and self.date <= timezone.now().date():
-            raise ValidationError('Reservations can only be made for future dates.')
+            raise ValidationError('Reservations can only be made for '
+                                  'future dates.')
 
         # Validate table availability only if date and time_slot are set
         if self.date is not None and self.time_slot is not None:
             if not self.is_table_available():
-                raise ValidationError('Selected table is not available for this time slot.')
+                raise ValidationError('Selected table is not available '
+                                      'for this time slot.')
 
         # Validate time slot
         if self.time_slot not in dict(TIME_PERIODS):
@@ -120,17 +128,19 @@ class Reservation(models.Model):
         """
         self.full_clean()
         if not self.slug:
-            self.slug = slugify(f"{self.date}-{self.time_slot}", allow_unicode=True)
+            self.slug = slugify(f"{self.date}-{self.time_slot}",
+                                allow_unicode=True)
         super().save(*args, **kwargs)
 
     def __str__(self):
         """
         Return a string representation of the Reservation instance.
-        
+
         **Returns**
 
         ``str``
             String representation of the reservation.
         """
         selected_time = dict(TIME_PERIODS)[self.time_slot]
-        return f"Reservation ID: {self.id} - {self.date} - {selected_time}, Table: {self.table.seats}"
+        return (f"Reservation ID: {self.id} - {self.date} - {selected_time}, "
+                f"Table: {self.table.seats}")
