@@ -6,6 +6,7 @@ from django.contrib import messages
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 
+
 def edit_reservation(request, reservation_id):
     """
     A view that edits an existing reservation.
@@ -13,7 +14,8 @@ def edit_reservation(request, reservation_id):
     **Context**
 
     ``form``
-        An instance of :model:`reservations.ReservationForm` for the specific reservation.
+        An instance of :model:`reservations.ReservationForm` for the
+        specific reservation.
 
     **Template:**
 
@@ -27,7 +29,13 @@ def edit_reservation(request, reservation_id):
             return redirect('reservation_list')
     else:
         form = ReservationForm(instance=reservation)
-    return render(request, 'reservations/edit_reservation.html', {'form': form})
+    return render(
+    request, 
+    'reservations/edit_reservation.html', 
+    {'form': form}
+)
+
+
 
 def reservation_success(request, reservation_id):
     """
@@ -43,7 +51,10 @@ def reservation_success(request, reservation_id):
     :template:`reservations/reservation_success.html`
     """
     reservation = get_object_or_404(Reservation, id=reservation_id)
-    return render(request, 'reservations/reservation_success.html', {'reservation': reservation})
+    return render(request, 'reservations/reservation_success.html', {
+        'reservation': reservation
+    })
+
 
 def reservation_remove(request, reservation_id):
     """
@@ -62,6 +73,7 @@ def reservation_remove(request, reservation_id):
     reservation.delete()
     return redirect('reservation_list')
 
+
 def reservation_list_view(request):
     """
     A view that lists all reservations for the authenticated user.
@@ -69,7 +81,8 @@ def reservation_list_view(request):
     **Context**
 
     ``reservations``
-        All instances of :model:`reservations.Reservation` for the authenticated user.
+        All instances of :model:`reservations.Reservation` for the
+        authenticated user.
 
     **Template:**
 
@@ -77,9 +90,12 @@ def reservation_list_view(request):
     """
     if request.user.is_authenticated:
         reservations = Reservation.objects.filter(customer=request.user)
-        return render(request, 'reservations/reservation_list.html', {'reservations': reservations})
+        return render(request, 'reservations/reservation_list.html', {
+            'reservations': reservations
+        })
     else:
         return redirect('account_login')
+
 
 def home(request):
     """
@@ -95,6 +111,7 @@ def home(request):
     """
     return render(request, 'index.html')  # Render the homepage
 
+
 def make_reservation(request):
     """
     A view that handles the process of making a new reservation.
@@ -102,10 +119,12 @@ def make_reservation(request):
     **Context**
 
     ``form``
-        An instance of :model:`reservations.ReservationForm` used to capture reservation details from the user.
+        An instance of :model:`reservations.ReservationForm` used to
+        capture reservation details from the user.
 
     ``helper``
-        An instance of :class:`crispy_forms.helper.FormHelper` used to add styling and layout to the form.
+        An instance of :class:`crispy_forms.helper.FormHelper` used to
+        add styling and layout to the form.
 
     **Template:**
 
@@ -114,21 +133,26 @@ def make_reservation(request):
     **Workflow:**
 
     - If the request method is GET:
-        - Instantiate a blank ReservationForm and a FormHelper for styling.
+        - Instantiate a blank ReservationForm and a FormHelper for
+          styling.
         - Render the form for the user to fill out.
 
     - If the request method is POST:
         - Capture the form data submitted by the user.
         - Validate the form data:
-            - If valid, save the reservation but don't commit it immediately.
+            - If valid, save the reservation but don't commit it
+              immediately.
             - Assign the current user as the customer of the reservation.
             - Save the reservation to the database.
-            - Redirect to the reservation success page, passing the reservation ID.
-            - If an error occurs while saving, render the form again with an error message.
+            - Redirect to the reservation success page, passing the
+              reservation ID.
+            - If an error occurs while saving, render the form again
+              with an error message.
 
     - If the form is invalid:
         - Print form errors to the console for debugging.
-        - Render the form again with an error message indicating the validation failed.
+        - Render the form again with an error message indicating the
+          validation failed.
     """
     form = ReservationForm()
     helper = FormHelper()
@@ -146,12 +170,30 @@ def make_reservation(request):
                 reservation.customer = request.user
                 reservation.save()
                 # Pass reservation ID in the redirect
-                return redirect('reservation_success', reservation_id=reservation.id)
+                return redirect('reservation_success',
+                                reservation_id=reservation.id)
             except Exception as e:
                 print("Error saving reservation:", e)
-                return render(request, 'reservations/make_reservation.html', {'form': form_with_args, 'error_message': 'An error occurred while processing your reservation. Please try again later.'})
+                return render(
+                    request,
+                    'reservations/make_reservation.html',
+                    {'form': form_with_args,
+                     'error_message': 'An error occurred while processing '
+                                      'your reservation. Please try again '
+                                      'later.'}
+                )
         else:
             print('Form errors:', form_with_args.errors)
-            return render(request, 'reservations/make_reservation.html', {'form': form_with_args, 'error_message': 'Reservation failed. Please check the form for errors.'})
+            return render(
+                request,
+                'reservations/make_reservation.html',
+                {'form': form_with_args,
+                 'error_message': 'Reservation failed. Please check the '
+                                  'form for errors.'}
+            )
     else:
-        return render(request, 'reservations/make_reservation.html', {'form': form})
+        return render(
+            request,
+            'reservations/make_reservation.html',
+            {'form': form}
+        )
