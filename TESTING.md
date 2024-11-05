@@ -76,7 +76,33 @@ Swedish but its just wont change its language but the content is pretty clear an
 
 ---
 
+## **Manual Testing**
 
+# AAADDDD
+
+
+### Site Responsivity
+
+# AAADDDD
+
+### Browser Compatibility
+
+The Restaurant was tested on the browsers below. No issues were encountered on any of the platforms used.
+
+| Browser                 | Issues | Functionality                   |
+|-------------------------|--------|---------------------------------|
+| Chrome v123.0.0.0       | none   | :white_check_mark: good         |
+| FireFox v132.0          | none   | :white_check_mark: good         |
+| Edge v131.0.2903.9      | none   | :white_check_mark: good         |
+| Samsung Internet v25.0  | none   | :white_check_mark: good         |
+
+### Bugs
+
+Here’s an explanation of what was fixed:
+- **Correct Table Formatting**: Ensure each column is separated by a pipe `|`.
+- **Spaces Around Symbols**: Ensure there are spaces around the checkmark symbol to render it correctly.
+
+By using this format, the checkmarks should display as expected. Let me know if this works or if there’s anything else you need help with! 🚀
 
 ## Bugs
 
