@@ -61,12 +61,12 @@ with a few functions not haveing enough space intbetwin
 
 Here is the reservationsviews.py result before corrections:
 
-![Linter result for reservations views.py](/docs/testing/)
+![Linter result for reservations views.py](/docs/testing/linter_view_bugs.png)
 
 
 Here is the same view after adjusting, all other files have also been adjusted if needed:
 
-![Pep8 compliant result](/docs/tes)
+![Pep8 compliant result](/docs/testing/linter_view_fixed.png)
 
 
 ### Lighthouse Scores

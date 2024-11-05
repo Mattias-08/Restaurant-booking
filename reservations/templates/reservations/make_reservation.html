@@ -21,6 +21,9 @@
                 <form method="post" action="{% url 'make_reservation' %}">
                     {% csrf_token %}
                     {{ form|crispy }}
+                    {% if reservation_id %}
+                        <input type="hidden" name="reservation_id" value="{{ reservation_id }}">
+                    {% endif %}
                     <div id="table-availability-message"></div> <!-- Ensure this ID matches -->
                     <button type="submit" class="btn btn-outline-success">Submit Reservation</button>
                 </form>
