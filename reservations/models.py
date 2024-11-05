@@ -74,6 +74,9 @@ class Reservation(models.Model):
         unique_together = ['date', 'time_slot', 'table']
         indexes = [models.Index(fields=['date', 'time_slot']), ]
 
+    def get_time(self): 
+        return dict(TIME_PERIODS)[self.time_slot]
+
     def is_table_available(self):
         """
         Check if the selected table is available for the given date and

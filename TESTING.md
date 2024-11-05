@@ -120,7 +120,7 @@ Our website is designed to be fully responsive, ensuring an optimal viewing expe
 
 By implementing responsive design principles, we ensure that users have a seamless and enjoyable experience, no matter how they access our site.
 
-Videos to display it would be good but there is not enough time for that sadly.
+Not enough to display videos of responsiveness but they are all responsive to different screensizes
 
 
 ### Browser Compatibility
@@ -165,7 +165,6 @@ User stories can be reviewed in the Restaurant Booking [GitHub project board]. U
 ---
 
 
-
 ## Bugs
 
 ### Known Bugs
@@ -173,3 +172,6 @@ User stories can be reviewed in the Restaurant Booking [GitHub project board]. U
 While going through the process of testing my app i ran accross this HTML errors:
 
 ![landing page HTML validation errors](/docs/testing/validationerror_html.png)
+
+Another not fully solved bug is that after trying to book an allready taken table and getting the error.msg
+If you only change the table and book again it will POST but not show any message.
