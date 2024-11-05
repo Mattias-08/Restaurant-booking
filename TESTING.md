@@ -35,10 +35,6 @@ I was given the all clear for every page with 'No errors or warnings to show', a
 
 ![HTML validation pass](/docs/testing/valid_html.png)
 
-After i adjusted html none of the pages had any bugs as shown below:
-
-![HTML validation pass](/docs/testing/valid)
-
 ### CSS Validation
 
 I used the [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) to validate my custom CSS file. I did not test bootstrap CSS.
@@ -114,7 +110,18 @@ Swedish but its just wont change its language but the content is pretty clear an
 
 ### Site Responsivity
 
-# AAADDDD
+Our website is designed to be fully responsive, ensuring an optimal viewing experience across a wide range of devices. Whether you are accessing the site on a desktop, tablet, or mobile phone, the layout adjusts seamlessly to fit the screen size. This enhances user experience by providing:
+
+- **Flexible Layouts**: The website's layout adjusts dynamically to fit different screen sizes and orientations.
+- **Scalable Images**: Images and media elements resize proportionally to maintain visual appeal and clarity.
+- **Touch-Friendly Navigation**: Navigation and interactive elements are optimized for touch input on mobile devices.
+- **Responsive Forms**: All forms and input fields are designed to be easily accessible and usable on any device.
+- **Consistent Performance**: The site ensures fast loading times and smooth performance across various devices and network conditions.
+
+By implementing responsive design principles, we ensure that users have a seamless and enjoyable experience, no matter how they access our site.
+
+Videos to display it would be good but there is not enough time for that sadly.
+
 
 ### Browser Compatibility
 

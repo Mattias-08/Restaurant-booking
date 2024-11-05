@@ -167,9 +167,27 @@ By keeping these functionalities separate, we ensure that each part of the appli
 
 ## **Models**
 
+## **Models**
 
+### **Tables model**
 
-# ADDDDDDDDDDDDD!
+Tables model:
+
+![the Table model](/docs/testing/Table%20model.png)
+
+---
+
+### **Reservations model**
+
+Reservations model i had to remove the comments for the image since the model is so big
+
+![the Reservations model](/docs/testing/Reservations_model.png)
+
+### **Time_periods**
+
+Time_periods:
+
+![the Time_periods](/docs/testing/model_tables.png)
 
 ## Colour Palette
 
