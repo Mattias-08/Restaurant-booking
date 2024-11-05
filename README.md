@@ -14,6 +14,19 @@ password - testering
 For a realife website the password would obviously be different but it dosent contain any real life data, the
 credentials are needed to access some of the websites features.
 
+## Table of Contents
+
+- Project Overview
+- User Experience (UX)
+- Project Features
+- Project Structure
+- Color Palette
+- Technologies Used
+- Deployment
+- Credits
+- Additional Information
+
+
 ## UX
 
 #### Strategy
