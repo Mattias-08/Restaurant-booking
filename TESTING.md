@@ -91,18 +91,41 @@ The Restaurant was tested on the browsers below. No issues were encountered on a
 
 | Browser                 | Issues | Functionality                   |
 |-------------------------|--------|---------------------------------|
-| Chrome v123.0.0.0       | none   | :white_check_mark: good         |
-| FireFox v132.0          | none   | :white_check_mark: good         |
-| Edge v131.0.2903.9      | none   | :white_check_mark: good         |
-| Samsung Internet v25.0  | none   | :white_check_mark: good         |
+| Chrome v123.0.0.0       | none   | ✔️ good         |
+| FireFox v132.0          | none   | ✔️ good         |
+| Edge v131.0.2903.9      | none   | ✔️ good         |
+| Samsung Internet v25.0  | none   | ✔️ good         |
 
-### Bugs
 
-Here’s an explanation of what was fixed:
-- **Correct Table Formatting**: Ensure each column is separated by a pipe `|`.
-- **Spaces Around Symbols**: Ensure there are spaces around the checkmark symbol to render it correctly.
+### Testing User Stories
 
-By using this format, the checkmarks should display as expected. Let me know if this works or if there’s anything else you need help with! 🚀
+User stories can be reviewed in the Restaurant Booking [GitHub project board]. User stories have been numbered according to how they appear on the project board. Testing was carried out by myself, but also colleagues, friends, and family.
+
+| User Story                 | Acceptance Criteria Met?  | Tested | Response     | Pass/Fail | Fix     |
+|----------------------------|---------------------------|--------|--------------|-----------|---------|
+| -    |      Epic: Admin                 |   - |  -  |   -  | -   |
+| #11 Manage table bookings   | ✔️ Yes                       | Yes    | No issues    | Pass      |    -    |
+| #18 Search games and add to library | ✔️ Yes                       | Yes    | No issues    | Pass      |    -    |
+| #6 Events CRUD              | ✔️ Yes                       | Yes    | No issues    | Pass      |    -    |
+| #12 Manage Library            | ✔️ Yes                       | Yes    | No issues    | Pass      |    -    |
+| #7 Event drafts  | ✔️ Yes                       | Yes    | No issues    | Pass      |    -    |
+| #8 Approve comments        | ✔️ Yes                       | Yes    | No issues    | Pass      |    -    |
+| #14 Review suggestions   | ✔️ Yes                       | Yes    | No issues    | Pass      |    -    |
+| -    |           Epic: User Interaction            |  -  | -   |   -  |  -  |
+| #10 Make a booking         | ✔️ Yes                       | Yes    | No issues    | Pass      |    -    |
+| #3 View comments          | ✔️ Yes                       | Yes    | No issues    | Pass      |    -    |
+| #5 Modify or delete comments | ✔️ Yes                       | Yes    | No issues    | Pass      |    -    |
+| -    |         Epic: Navigation              |   - | -   | -    |  -  |
+| #1 Event pagination  | ✔️ Yes                       | Yes    | No issues    | Pass      |    -    |
+| #2 Event details         | ✔️ Yes                       | Yes    | No issues    | Pass      |    -    |
+| #16 View landing page       | ✔️ Yes                       | Yes    | No issues    | Pass      |    -    |
+| #13 View games library         | ✔️ Yes                       | Yes    | No issues    | Pass      |    -    |
+| -    |         Epic: Log in / Register              |  -  |  -  |   -  | -   |
+| #4 Register account      | ✔️ Yes                      
+
+---
+
+
 
 ## Bugs
 
