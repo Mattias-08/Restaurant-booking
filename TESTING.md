@@ -50,7 +50,24 @@ The result came back with no errors found as can be seen here.
 
 ### Python Validation
 
-# AAAAAADDD
+I used the [CI Python Linter](https://pep8ci.herokuapp.com/#) to validate my python code and make sure it was pep8 compliant. The majority of my python code needed tweaking to make it compliant and my results are in the below table. Basically all issues was related to the lines being to long or whitespace after a line
+with a few functions not haveing enough space intbetwin
+
+| App/directory    | admin.py | forms.py | models.py | urls.py | views.py |
+|------------------|----------|----------|-----------|---------|----------|
+| reservations     | ✔️ compliant | ✔️ compliant | ✔️ compliant | ✔️ compliant | ✔️ compliant |
+| booking_system   | na       | na       | na        | na      | na       |
+
+
+Here is the reservationsviews.py result before corrections:
+
+![Linter result for reservations views.py](/docs/testing/)
+
+
+Here is the same view after adjusting, all other files have also been adjusted if needed:
+
+![Pep8 compliant result](/docs/tes)
+
 
 ### Lighthouse Scores
 
@@ -77,7 +94,22 @@ Swedish but its just wont change its language but the content is pretty clear an
 
 ## **Manual Testing**
 
-# AAADDDD
+| Feature                  | Scenario                   | Tested | Input Type   | Expected Outcome                                                                                                           | Result | Notes |
+|--------------------------|----------------------------|--------|--------------|---------------------------------------------------------------------------------------------------------------------------|--------|-------|
+| Landing Page             | Access Landing Page        | yes    | -            | The landing page loads successfully with all navigation links working correctly.                                           | ✔️ pass | -     |
+| Sign Up                  | Sign Up Form               | yes    | text input   | If the user fills out the form incorrectly, they are prompted on how to fix it. Once the form is successfully submitted, the user is returned to the landing page and a success message is displayed. | ✔️ pass | -     |
+| Log In                   | Log In Form                | yes    | text input   | If the user provides incorrect credentials, they are shown an error message. Upon successful login, the user is redirected to their profile page. | ✔️ pass | -     |
+| Make Reservation         | Reservation Form           | yes    | text input   | If the user fills out the form incorrectly, they are prompted on how to fix it. Once the form is successfully submitted, a confirmation message is displayed. | ✔️ pass | -     |
+| Edit Reservation         | Edit Reservation Form      | yes    | text input   | The user can modify their reservation details. Upon successful submission, the updated details are saved and a confirmation message is displayed. | ✔️ pass | -     |
+| Delete Reservation       | Delete Action              | yes    | button click | The user can delete their reservation. A confirmation dialog appears before deletion. Upon confirmation, the reservation is deleted and a success message is displayed. | ✔️ pass | -     |
+| View Reservations        | Reservations List          | yes    | -            | The user can view a list of their reservations. Each reservation entry shows the date, time, and table number.              | ✔️ pass | -     |
+| Edit Button              | Edit Reservation Button    | yes    | button click | The user clicks the edit button, which directs them to the edit reservation form where they can modify their reservation details. | ✔️ pass | -     |
+| Remove Button            | Remove Reservation Button  | yes    | button click | The user clicks the remove button, which shows a confirmation dialog. Upon confirmation, the reservation is removed and the user sees a success message. | ✔️ pass | -     |
+| Admin: Manage Reservations | Admin Reservation Management | yes | text input   | The admin can view, edit, and delete any reservation. Changes are reflected immediately in the system, and relevant success messages are displayed. | ✔️ pass | -     |
+| Navigation               | Navigation Links           | yes    | button click | All navigation links (Home, Reservations, Log In/Out) work correctly, directing the user to the appropriate pages.          | ✔️ pass | -     |
+| User Profile             | View Profile               | yes    | -            | The user can view their profile details, including their reservations and personal information.                           | ✔️ pass | -     |
+| Log Out                  | Log Out Action             | yes    | button click | The user can log out successfully, and they are redirected to the landing page with a success message.                     | ✔️ pass | -     |
+
 
 
 ### Site Responsivity
