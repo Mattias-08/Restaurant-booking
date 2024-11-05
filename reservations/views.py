@@ -30,11 +30,9 @@ def edit_reservation(request, reservation_id):
     else:
         form = ReservationForm(instance=reservation)
     return render(
-    request, 
-    'reservations/edit_reservation.html', 
-    {'form': form}
-)
-
+        request,
+        'reservations/edit_reservation.html',
+        {'form': form})
 
 
 def reservation_success(request, reservation_id):
@@ -67,11 +65,17 @@ def reservation_remove(request, reservation_id):
 
     **Template:**
 
-    (none - redirects to `reservation_list`)
+    :template:`reservations/make_reservation.html`
     """
     reservation = get_object_or_404(Reservation, id=reservation_id)
     reservation.delete()
-    return redirect('reservation_list')
+    reservations = Reservation.objects.filter(customer=request.user)
+    return render(
+        request,
+        'reservations/make_reservation.html',
+        {'form': ReservationForm(), 'reservations': reservations}
+    )
+
 
 
 def reservation_list_view(request):
@@ -162,6 +166,8 @@ def make_reservation(request):
     helper.add_input(Submit('submit', 'Submit Reservation'))
     form.helper = helper
 
+    reservations = Reservation.objects.filter(customer=request.user)
+
     if request.method == 'POST':
         form_with_args = ReservationForm(request.POST)
         if form_with_args.is_valid():
@@ -195,5 +201,6 @@ def make_reservation(request):
         return render(
             request,
             'reservations/make_reservation.html',
-            {'form': form}
-        )
+            {'form': form,
+            'reservations': reservations,
+        })
