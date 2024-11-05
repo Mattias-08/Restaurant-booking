@@ -11,4 +11,4 @@ requests-oauthlib==2.0.0
 sqlparse==0.5.0
 whitenoise==5.3.0
 django-crispy-forms==2.3
-
+crispy-bootstrap5==2024.10
