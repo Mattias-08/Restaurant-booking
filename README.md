@@ -55,6 +55,9 @@ credentials are needed to access some of the websites features.
 - As a user, I want to create an account by providing a username, email, and password.
 - As a user, I want to securely delete my account and lose my bookings.
 
+![Booking project board](/docs/images/kanbanboard.png)
+*Project kanban board*
+
 ## Site Features
  
 ### Navigation Bar
